@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE openerp SYSTEM "openerp.dtd">
+
+<openerp>
+  <data>
+
+    <record id="wizard_attachment_tree_view" model="ir.ui.view">
+      <field name="name">Ir Attachment Dms</field>
+      <field name="model">ir.attachment.dms</field>
+      <field name="arch" type="xml">
+          <tree string="Attachment"
+                editable="bottom"
+                create="false"
+                delete="false">
+            <field name="selectable_ok"/>
+            <field name="name" />
+            <field name="code" />
+          </tree>
+      </field>
+    </record>
+
+  </data>
+</openerp>
