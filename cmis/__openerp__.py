@@ -22,14 +22,15 @@
 
 {
     'name': 'CMIS',
-    'version': '0.1',
+    'version': '1.0',
     'category': 'Connector',
     'summary': 'Cmis Connector',
     'description': """
 Cmis Connector
 ==============
 
-This module is the base for OpenERP modules implementing different integration scenario with a CMIS server.
+This module is the base for OpenERP modules implementing different integration
+scenario with a CMIS server.
 It allows you to configure a CMIS backend in OpenERP.
 
 Configuration
@@ -47,16 +48,13 @@ Contributors
     'depends': [
         'connector',
     ],
+    'external_dependencies': {
+        'python': ['cmislib'],
+    },
     'data': [
         'cmis_model_view.xml',
         'cmis_menu.xml',
     ],
-    'js': [],
-    'qweb': [],
-    'test': [],
-    'demo': [],
     'installable': True,
     'auto_install': False,
 }
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -31,22 +31,65 @@ class cmis_backend(orm.Model):
     _name = 'cmis.backend'
     _description = 'CMIS Backend'
     _inherit = 'connector.backend'
-
     _backend_type = 'cmis'
+    _columns = {
+        'version': fields.selection(
+            lambda self, *a, **kw: self._select_versions(*a, **kw),
+            string='Version',
+            required=True,
+        ),
+        'location': fields.char(
+            'Location',
+            size=128,
+            required=True,
+        ),
+        'username': fields.char(
+            'Username',
+            size=64,
+            required=True,
+        ),
+        'password': fields.char(
+            'Password',
+            size=64,
+            required=True,
+        ),
+        'initial_directory_read': fields.char(
+            'Initial directory of read',
+            size=128,
+            required=True,
+        ),
+        'initial_directory_write': fields.char(
+            'Initial directory of write',
+            size=128,
+            required=True,
+        ),
+        'browsing_ok': fields.boolean(
+            'Allow browsing this backend',
+        ),
+        'storing_ok': fields.boolean(
+            'Allow storing in this backend',
+        ),
+    }
+    _defaults = {
+        'initial_directory_read': '/',
+        'initial_directory_write': '/',
+    }
 
     def _select_versions(self, cr, uid, context=None):
         return [('1.0', '1.0')]
 
-    # Test connection with GED
-    def _auth(self, cr, uid, context=None):
+    def _auth(self, cr, uid, ids, context=None):
+        """Test connection with CMIS"""
         if context is None:
-            context = {}
-        # Get the url, user and password for GED
-        ids = self.search(cr, uid, [])
-        res = self.read(cr, uid, ids,
-                        ['location',
-                         'username',
-                         'password'], context=context)[0]
+            context = self.pool['res.users'].context_get(cr, uid)
+        # Get the url, user and password for CMIS
+        res = self.read(
+            cr, uid, ids, [
+                'location',
+                'username',
+                'password'
+            ], context=context
+        )[0]
         url = res['location']
         user_name = res['username']
         user_password = res['password']
@@ -55,23 +98,23 @@ class cmis_backend(orm.Model):
         try:
             return client.defaultRepository
         except cmislib.exceptions.ObjectNotFoundException:
-            raise orm.except_orm(_('Cmis connection Error!'),
-                                 _("Check your cmis account configuration."))
+            raise orm.except_orm(_('CMIS connection Error!'),
+                                 _("Check your CMIS account configuration."))
         except cmislib.exceptions.PermissionDeniedException:
-            raise orm.except_orm(_('Cmis connection Error!'),
-                                 _("Check your cmis account configuration."))
+            raise orm.except_orm(_('CMIS connection Error!'),
+                                 _("Check your CMIS account configuration."))
         except urllib2.URLError:
-            raise orm.except_orm(_('Cmis connection Error!'),
+            raise orm.except_orm(_('CMIS connection Error!'),
                                  _("SERVER is down."))
 
-    # Function to check if we have access right to write from the path
     def check_directory_of_write(self, cr, uid, ids, context=None):
+        """Check access right to write from the path"""
         if context is None:
-            context = {}
+            context = self.pool['res.users'].context_get(cr, uid)
         cmis_backend_obj = self.pool.get('cmis.backend')
         datas_fname = 'testdoc'
         # login with the cmis account
-        repo = self._auth(cr, uid, context=context)
+        repo = self._auth(cr, uid, ids, context=context)
         cmis_backend_rec = cmis_backend_obj.read(
             cr, uid, ids, ['initial_directory_write'],
             context=context)[0]
@@ -99,83 +142,46 @@ class cmis_backend(orm.Model):
                     ("Please check your access right."))
         self.get_error_for_path(bool_path_write, folder_path_write)
 
-    # Function to check if we have access right to read from the path
     def check_directory_of_read(self, cr, uid, ids, context=None):
-        ir_attach_obj = self.pool.get('ir.attachment')
+        """Check access right to read from the path"""
         if context is None:
-            context = {}
-        cmis_backend_obj = self.pool.get('cmis.backend')
-        cmis_backend_rec = cmis_backend_obj.read(
+            context = self.pool['res.users'].context_get(cr, uid)
+        cmis_backend_rec = self.read(
             cr, uid, ids, ['initial_directory_read'],
             context=context)[0]
         # Login with the cmis account
-        repo = self._auth(cr, uid, context=context)
+        repo = self._auth(cr, uid, ids, context=context)
         folder_path_read = cmis_backend_rec['initial_directory_read']
         # Testing the path
         rs = repo.query("SELECT cmis:path FROM  cmis:folder ")
         bool_path_read = self.check_existing_path(rs, folder_path_read)
         self.get_error_for_path(bool_path_read, folder_path_read)
 
-    # Function to check if the path is correct
     def check_existing_path(self, rs, folder_path):
+        """Function to check if the path is correct"""
         for one_rs in rs:
             # Print name of files
             props = one_rs.getProperties()
-            if props['cmis:path'] != folder_path:
-                bool = False
-            else:
-                bool = True
-                break
-        return bool
+            if props['cmis:path'] == folder_path:
+                return True
+        return False
 
-    # Function to return following the boolean the right error message
-    def get_error_for_path(self, bool, path):
-        if bool:
+    def get_error_for_path(self, is_valid, path):
+        """Return following the boolean the right error message"""
+        if is_valid:
             raise orm.except_orm(_('Cmis  Message'),
-                                 _("Path is correct for : " + path))
+                                 _("Path is correct for : %s") % path)
         else:
             raise orm.except_orm(_('Cmis  Error!'),
-                                 _("Error path for : " + path))
+                                 _("Error path for : %s") % path)
 
-    # Escape the name for characters not supported in filenames
     def sanitize_input(self, file_name):
-        # for avoiding SQL Injection
-        file_name = file_name.replace("'", "\\'")
-        file_name = file_name.replace("%", "\%")
-        file_name = file_name.replace("_", "\_")
+        """Prevend injection by escaping: '%_"""
+        file_name = file_name.replace("'", r"\'")
+        file_name = file_name.replace("%", r"\%")
+        file_name = file_name.replace("_", r"\_")
         return file_name
 
     def safe_query(self, query, file_name, repo):
         args = map(self.sanitize_input, file_name)
         return repo.query(query % ''.join(args))
-
-    _columns = {
-        'version': fields.selection(
-            _select_versions,
-            string='Version',
-            required=True),
-        'location': fields.char('Location', size=128, required=True,
-                                help="Location."),
-        'username': fields.char('Username', size=64, required=True,
-                                help="Username."),
-        'password': fields.char('Password', size=64, required=True,
-                                help="Password."),
-        'initial_directory_read': fields.char(
-            'Initial directory of read',
-            size=128,
-            required=True,
-            help="Initial directory of read."),
-        'initial_directory_write': fields.char(
-            'Initial directory of write',
-            size=128,
-            required=True,
-            help="Initial directory of write."),
-        'browsing_ok': fields.boolean('Allow browsing this backend',
-                                      help="Allow browsing this backend."),
-        'storing_ok': fields.boolean('Allow storing in this backend',
-                                     help="Allow storing in this backend."),
-    }
-    _defaults = {
-        'initial_directory_read': '/',
-        'initial_directory_write': '/',
-    }
