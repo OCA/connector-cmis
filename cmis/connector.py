@@ -34,5 +34,3 @@ def get_environment(session, model_name, backend_id):
     lang_code = lang.code if lang else 'en_US'
     env.set_lang(code=lang_code)
     return env
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
