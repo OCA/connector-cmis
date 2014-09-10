@@ -134,7 +134,7 @@ class cmis_backend(orm.Model):
             except cmislib.exceptions.UpdateConflictException:
                 raise orm.except_orm(
                     _('Cmis  Error!'),
-                    _("The test file is already existed in DMS. "
+                    _("The test file already exists in the DMS. "
                       "Please remove it and try again."))
             except cmislib.exceptions.RuntimeException:
                 raise orm.except_orm(
@@ -176,7 +176,7 @@ class cmis_backend(orm.Model):
                                  _("Error path for : %s") % path)
 
     def sanitize_input(self, file_name):
-        """Prevend injection by escaping: '%_"""
+        """Prevent injection by escaping: '%_"""
         file_name = file_name.replace("'", r"\'")
         file_name = file_name.replace("%", r"\%")
         file_name = file_name.replace("_", r"\_")
