@@ -39,7 +39,7 @@ class ir_attachment_download(orm.TransientModel):
         'datas': fields.binary('File', readonly=True),
         'type': fields.char('Type', size=256, help='Type'),
         'file_type': fields.char('Content Type', help='Content Type'),
-        'attachment_id':  fields.many2one('ir.attachment', 'Attachment'),
+        'attachment_id': fields.many2one('ir.attachment', 'Attachment'),
     }
     _defaults = {
         'type': 'binary',

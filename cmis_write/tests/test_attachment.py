@@ -21,7 +21,6 @@
 ###############################################################################
 
 from openerp.tests.common import TransactionCase
-from openerp.addons.connector.session import ConnectorSession
 
 
 class test_attachment(TransactionCase):
