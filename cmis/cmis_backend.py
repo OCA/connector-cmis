@@ -78,11 +78,12 @@ class cmis_backend(orm.Model):
     def _select_versions(self, cr, uid, context=None):
         return [('1.0', '1.0')]
 
-    def _auth(self, cr, uid, ids, context=None):
+    def _auth(self, cr, uid, context=None):
         """Test connection with CMIS"""
         if context is None:
             context = self.pool['res.users'].context_get(cr, uid)
         # Get the url, user and password for CMIS
+        ids = self.search(cr, uid, [])
         res = self.read(
             cr, uid, ids, [
                 'location',
