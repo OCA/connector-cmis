@@ -52,7 +52,7 @@ Contributors
         'python': ['cmislib'],
     },
     'data': [
-        'cmis_model_view.xml',
+        'cmis_backend_view.xml',
         'cmis_menu.xml',
     ],
     'installable': True,
