@@ -54,12 +54,12 @@ class cmis_backend(orm.Model):
             required=True,
         ),
         'initial_directory_read': fields.char(
-            'Initial directory of read',
+            'Initial directory for reading',
             size=128,
             required=True,
         ),
         'initial_directory_write': fields.char(
-            'Initial directory of write',
+            'Initial directory for writing',
             size=128,
             required=True,
         ),
