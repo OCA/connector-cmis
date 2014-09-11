@@ -72,6 +72,7 @@ Contributors
         'cmis',
     ],
     'data': [
+        'document_view.xml',
         'metadata_view.xml',
         'security/ir.model.access.csv',
     ],
