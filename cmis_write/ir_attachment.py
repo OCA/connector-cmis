@@ -87,7 +87,7 @@ class ir_attachment(orm.Model):
         # the doc in the DMS
         if not context.get('bool_testdoc'):
             try:
-                create_doc_in_edm(
+                create_doc_in_edm.delay(
                     session, 'ir.attachment', value, res, dict_metadata,
                     user_login)
 
@@ -105,44 +105,6 @@ class ir_attachment(orm.Model):
                     _('Error!'),
                     _('Cannot save the attachment in DMS.') + '\n' + ustr(e)
                 )
-        return res
-
-    def write(self, cr, uid, ids, values, context=None):
-        if context is None:
-            context = {}
-        metadata_obj = self.pool['metadata']
-        user_obj = self.pool['res.users']
-        user_login = user_obj.browse(cr, uid, uid, context=context).login
-        session = ConnectorSession(cr, uid, context=context)
-        if values.get('datas'):
-            values['file_type'], values['index_content'] = self._index(
-                cr, uid, values['datas'],
-                values.get('datas_fname', False), None)
-        metadata_ids = metadata_obj.search(
-            cr, SUPERUSER_ID, [], context=context
-        )
-        dict_metadata = {}
-        list_fields = []
-        # Get list of metadata
-        if values.get('res_model'):
-            for line in metadata_obj.browse(cr, SUPERUSER_ID, metadata_ids,
-                                            context=context):
-                if line.model_id.model == values.get('res_model') and \
-                        line.metadata_list_ids:
-                    list_fields += [one_field.field_id.name
-                                    for one_field in line.metadata_list_ids]
-        if list_fields:
-            result = self.pool.get(values.get('res_model')).read(cr, uid, [
-                values.get('res_id')], list_fields, context=context)[0]
-            for one_field in list_fields:
-                dict_metadata['docubase:' + one_field] = result[one_field]
-        # Don't save the document in Odoo/OpenERP
-        values['datas'] = None
-        res = super(ir_attachment, self).write(cr, SUPERUSER_ID, ids,
-                                               values, context=context)
-        # TODO: Define this method below
-        #update_doc_in_edm(session, 'ir.attachment', ids,
-        #                  dict_metadata, user_login)
         return res
 
     def action_download(self, cr, uid, ids, context=None):
@@ -254,7 +216,7 @@ class ir_attachment(orm.Model):
     }
 
 
-#@job
+@job
 def create_doc_in_edm(session, model_name, value, res,
                       dict_metadata, user_login, filters=None):
     """
