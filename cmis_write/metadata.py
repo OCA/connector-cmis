@@ -23,28 +23,36 @@
 from openerp.osv import orm, fields
 
 
-class metadata_list(orm.Model):
-    _description = 'List of Metadata'
-    _name = 'metadata.list'
-
-    _columns = {
-        'field_id': fields.many2one('ir.model.fields', 'Fields'),
-        'metadata_id': fields.many2one('metadata', 'Metadata'),
-    }
-
-
 class metadata(orm.Model):
     _name = "metadata"
     _description = "Metadata"
     _columns = {
-        'name': fields.char("Name", size=64, required=True, select=1),
-        'model_id': fields.many2one('ir.model', 'Model',
-                                    required=True, select=1),
-        'field_ids': fields.many2many('ir.model.fields', 'metadata_field_rel',
-                                      'meta_id', 'field_id', 'Fields'),
-        'metadata_list_ids': fields.one2many('metadata.list', 'metadata_id',
-                                             'List of fields'),
-        'model_ids': fields.many2many('ir.model', string='Model List'),
+        'name': fields.char("Name", required=True, select=1, help="Name"),
+        'model_id': fields.many2one(
+            'ir.model',
+            'Model',
+            required=True,
+            select=1,
+            help="Model"
+        ),
+        'field_ids': fields.many2many(
+            'ir.model.fields',
+            'metadata_field_rel',
+            'meta_id', 'field_id',
+            'Fields',
+            help="Fields"
+        ),
+        'metadata_list_ids': fields.one2many(
+            'metadata.list',
+            'metadata_id',
+            'List of fields',
+            help="List of fields"
+        ),
+        'model_ids': fields.many2many(
+            'ir.model',
+            string='Model List',
+            help="Model List"
+        ),
     }
 
     def onchange_model(self, cr, uid, ids, model_id, context=None):
@@ -63,5 +71,3 @@ class metadata(orm.Model):
                                                    context=context)
                 model_ids += found_model_ids
         return {'value': {'model_ids': [(6, 0, model_ids)]}}
-
-# vim:expandtab:smartindent:toabstop=4:softtabstop=4:shiftwidth=4:

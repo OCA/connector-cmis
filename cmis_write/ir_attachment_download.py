@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Savoir-faire Linux
+#    This module copyright (C) 2015 Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,25 +23,24 @@
 from openerp.osv import orm, fields
 
 
-class ir_attachment_doc_backend(orm.Model):
-    _description = "List of backend's document"
-    _name = 'ir.attachment.doc.backend'
+class ir_attachment_download(orm.TransientModel):
+    _name = 'ir.attachment.download'
 
     _columns = {
+        'name': fields.char(
+            'Attachment Name',
+            required=True,
+            help='Attachment Name'
+        ),
+        'datas': fields.binary('File', readonly=True),
+        'type': fields.char('Type', help='Type'),
+        'file_type': fields.char('Content Type', help='Content Type'),
         'attachment_id': fields.many2one(
-            'ir.model.fields',
-            'Document',
-            ondelete='cascade',
-            help="Document"
+            'ir.attachment',
+            'Attachment',
+            help="Attachment"
         ),
-        'backend_id': fields.many2one(
-            'cmis.backend',
-            'Backend',
-            ondelete='cascade',
-            help="Backend"
-        ),
-        'object_doc_id': fields.char(
-            "Id of document backend",
-            help="Id of document backend"
-        ),
+    }
+    _defaults = {
+        'type': 'binary',
     }

@@ -23,5 +23,7 @@
 from . import (
     ir_attachment,
     ir_attachment_doc_backend,
-    metadata
+    metadata,
+    metadata_list,
+    ir_attachment_download
 )

@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Savoir-faire Linux
+#    This module copyright (C) 2015 Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -23,25 +23,19 @@
 from openerp.osv import orm, fields
 
 
-class ir_attachment_doc_backend(orm.Model):
-    _description = "List of backend's document"
-    _name = 'ir.attachment.doc.backend'
+class metadata_list(orm.Model):
+    _description = 'List of Metadata'
+    _name = 'metadata.list'
 
     _columns = {
-        'attachment_id': fields.many2one(
+        'field_id': fields.many2one(
             'ir.model.fields',
-            'Document',
-            ondelete='cascade',
-            help="Document"
+            'Fields',
+            help="Fields"
         ),
-        'backend_id': fields.many2one(
-            'cmis.backend',
-            'Backend',
-            ondelete='cascade',
-            help="Backend"
-        ),
-        'object_doc_id': fields.char(
-            "Id of document backend",
-            help="Id of document backend"
+        'metadata_id': fields.many2one(
+            'metadata',
+            'Metadata',
+            help="Metadata"
         ),
     }
