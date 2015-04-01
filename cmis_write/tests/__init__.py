@@ -22,8 +22,10 @@
 
 from . import (
     test_attachment,
+    test_metadata,
 )
 
 checks = [
     test_attachment,
+    test_metadata,
 ]
