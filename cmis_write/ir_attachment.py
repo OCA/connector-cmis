@@ -113,27 +113,37 @@ class ir_attachment(orm.Model):
         """
         if context is None:
             context = {}
+        if isinstance(ids, (int, long)):
+            ids = [ids]
         cmis_backend_obj = self.pool['cmis.backend']
         # login with the cmis account
         backend_ids = cmis_backend_obj.search(cr, uid,
                                               [('storing_ok', '=', 'True')],
                                               context=context)
         datas = ''
-        for backend in cmis_backend_obj.browse(cr, uid, backend_ids,
-                                               context=context):
-            try:
-                repo = cmis_backend_obj._auth(cr, uid, backend.id,
-                                              context=context)
-                cmis_backend_rec = self.read(
-                    cr, uid, ids, ['id_dms'], context=context)[0]
-                id_dms = cmis_backend_rec['id_dms']
-                # Get results from id of document
-                results = repo.query(" SELECT * FROM  cmis:document WHERE \
-                                     cmis:objectId ='" + id_dms + "'")
-                datas = results[0].getContentStream().read().encode('base64')
-                break
-            except:
-                continue
+        for ir in self.browse(cr, uid, ids, context=context):
+            if ir.attachment_document_ids:
+                i = 0
+                for doc in ir.attachment_document_ids:
+                    try:
+                        backend = cmis_backend_obj.search(
+                            cr, uid, [
+                                ('id', '=', doc.backend_id.id),
+                                ('storing_ok', '=', 'True')
+                            ], context=context)
+                        # Connect to the backend
+                        repo = cmis_backend_obj._auth(
+                            cr, uid, backend, context=context)
+                        # Get the id of document
+                        id_dms = doc.object_doc_id
+                        # Get results from id of document
+                        query = " SELECT * FROM  cmis:document \
+                                WHERE cmis:objectId ='" + id_dms + "'"
+                        results = repo.query(query)
+                        datas = results[0].getContentStream().read().encode('base64')
+                        return datas
+                    except:
+                        continue
         return datas
 
     def _data_set(self, cr, uid, id, name, value, arg, context=None):
