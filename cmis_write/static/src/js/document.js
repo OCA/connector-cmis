@@ -5,7 +5,7 @@ var _t = instance.web._t,
     instance.web.Sidebar.include({
         start: function() {
         var self = this;
-        this._super(this);
+        this._super();
         this.redraw();
         this.$el.on('click','.oe_dropdown_menu li a', function(event) {
             var section = $(this).data('section');
