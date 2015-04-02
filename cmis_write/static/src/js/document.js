@@ -17,6 +17,8 @@ var _t = instance.web._t,
                 self.on_item_action_clicked(item);
             } else if (!item.id_dms) {
                 alert(_t("Document is not available in DMS.Please try again !!!"));
+            } else if (!item.datas) {
+                alert(_t("Access error of DMS !!!"));
             } else if (item.url) {
                 return true;
             }
@@ -35,7 +37,7 @@ var _t = instance.web._t,
         } else {
             var dom = [ ['res_model', '=', dataset.model], ['res_id', '=', model_id], ['type', 'in', ['binary', 'url']] ];
             var ds = new instance.web.DataSetSearch(this, 'ir.attachment', dataset.get_context(), dom);
-            ds.read_slice(['name', 'url', 'id_dms','type', 'create_uid', 'create_date', 'write_uid', 'write_date'], {}).done(this.on_attachments_loaded);
+            ds.read_slice(['name', 'url', 'id_dms', 'datas', 'type', 'create_uid', 'create_date', 'write_uid', 'write_date'], {}).done(this.on_attachments_loaded);
         }
     },
     });

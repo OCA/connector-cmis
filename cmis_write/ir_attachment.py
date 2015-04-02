@@ -118,6 +118,7 @@ class ir_attachment(orm.Model):
         backend_ids = cmis_backend_obj.search(cr, uid,
                                               [('storing_ok', '=', 'True')],
                                               context=context)
+        datas = ''
         for backend in cmis_backend_obj.browse(cr, uid, backend_ids,
                                                context=context):
             try:
@@ -179,17 +180,14 @@ class ir_attachment(orm.Model):
             elif attach.id_dms:
                 datas = self.action_download(
                     cr, uid, attach.id, context=context)
-                result[attach.id] = datas
-                file_type, index_content = self._index(
-                    cr, uid, datas.decode('base64'), attach.datas_fname, None)
-                self.write(
-                    cr, uid, [attach.id],
-                    {'file_type': file_type, 'index_content': index_content},
-                    context=context)
+                if datas:
+                    result[attach.id] = datas
+                else:
+                    result[attach.id] = ''
+                    _logger.warn('Access error of DMS')
             else:
-                raise orm.except_orm(_('Access error of document'),
-                                     _("Document is not available in DMS; "
-                                       "Please try again"))
+                result[attach.id] = ''
+                _logger.warn('Attachment %s has no id_dms', attach.name)
         return result
 
     _columns = {
