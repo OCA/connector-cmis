@@ -116,14 +116,9 @@ class ir_attachment(orm.Model):
         if isinstance(ids, (int, long)):
             ids = [ids]
         cmis_backend_obj = self.pool['cmis.backend']
-        # login with the cmis account
-        backend_ids = cmis_backend_obj.search(cr, uid,
-                                              [('storing_ok', '=', 'True')],
-                                              context=context)
         datas = ''
         for ir in self.browse(cr, uid, ids, context=context):
             if ir.attachment_document_ids:
-                i = 0
                 for doc in ir.attachment_document_ids:
                     try:
                         backend = cmis_backend_obj.search(
@@ -140,7 +135,8 @@ class ir_attachment(orm.Model):
                         query = " SELECT * FROM  cmis:document \
                                 WHERE cmis:objectId ='" + id_dms + "'"
                         results = repo.query(query)
-                        datas = results[0].getContentStream().read().encode('base64')
+                        datas = results[0].getContentStream().read().encode(
+                            'base64')
                         return datas
                     except:
                         continue
