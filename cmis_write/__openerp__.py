@@ -24,12 +24,12 @@
     'name': 'CMIS Write',
     'version': '0.1',
     'category': 'Knowledge Management',
-    'summary': 'Create Document in DMS from OpenERP',
+    'summary': 'Create Document in DMS from Odoo/OpenERP',
     'description': """
-Add Documents from OpenERP
-==========================
+Add Documents from Odoo/OpenERP
+===============================
 
-This module allows you to store OpenERP document in the DMS repository.
+This module allows you to store Odoo/OpenERP document in the DMS repository.
 
 Configuration
 =============
@@ -41,9 +41,10 @@ Configuration
 Usage
 =====
 
-* On one OpenERP record, click "Add document".
+* On one Odoo/OpenERP record, click "Add document".
 * Upload your documents
 * Uploaded documents will be enqueued for storage in the DMS
+  (Document Management System)
 
 Add Metadata
 ============
