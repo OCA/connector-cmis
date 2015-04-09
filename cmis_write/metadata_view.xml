@@ -5,7 +5,6 @@
     <record model="ir.ui.view" id="view_mass_object_form">
         <field name="name">metadata.form</field>
         <field name="model">metadata</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
           <form string="Object">
             <field name="name"/>
@@ -29,7 +28,6 @@
     <record model="ir.ui.view" id="view_metadata_tree">
         <field name="name">metadata.tree</field>
         <field name="model">metadata</field>
-        <field name="type">form</field>
         <field name="arch" type="xml">
           <tree string="Object">
             <field name="name"/>
