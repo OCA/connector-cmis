@@ -78,8 +78,9 @@ class ir_attachment(orm.Model):
                 values.get('res_id')], list_fields, context=context)[0]
             for one_field in list_fields:
                 dict_metadata['cmis:' + one_field] = result[one_field]
-        # Don't save the document in Odoo/OpenERP
-        values['datas'] = None
+        if not context.get('bool_testdoc'):
+            # Don't save the document in Odoo/OpenERP
+            values['datas'] = None
         # Create an ir.attachment
         res = super(ir_attachment, self).create(
             cr, uid, values, context=context)
@@ -118,7 +119,9 @@ class ir_attachment(orm.Model):
         cmis_backend_obj = self.pool['cmis.backend']
         datas = ''
         for ir in self.browse(cr, uid, ids, context=context):
-            if ir.attachment_document_ids:
+            # Get the created document from cmis_write.
+            # Document is stored from DMS.
+            if len(ir.attachment_document_ids) != 0:
                 for doc in ir.attachment_document_ids:
                     try:
                         backend = cmis_backend_obj.search(
@@ -140,6 +143,10 @@ class ir_attachment(orm.Model):
                         return datas
                     except:
                         continue
+            else:
+                # Get the created document from cmis_read.
+                # Document is directly stored in Odoo/OpenERP.
+                return ir.db_datas
         return datas
 
     def _data_set(self, cr, uid, id, name, value, arg, context=None):
@@ -163,10 +170,12 @@ class ir_attachment(orm.Model):
                 {'store_fname': fname, 'file_size': file_size},
                 context=context)
         else:
-            # Don't save datas, put db_datas field to none
+            # Don't save data if the document comes from DMS
+            if not context.get('bool_testdoc'):
+                value = None
             super(ir_attachment, self).write(
                 cr, SUPERUSER_ID, [id],
-                {'db_datas': None, 'file_size': file_size}, context=context)
+                {'db_datas': value, 'file_size': file_size}, context=context)
         return True
 
     def _data_get(self, cr, uid, ids, name, arg, context=None):
@@ -180,20 +189,22 @@ class ir_attachment(orm.Model):
             cr, uid, 'ir_attachment.location')
         bin_size = context.get('bin_size')
         for attach in self.browse(cr, uid, ids, context=context):
+            datas = self.action_download(cr, uid, attach.id, context=context)
             if location and attach.store_fname:
                 result[attach.id] = self._file_read(
                     cr, uid, location, attach.store_fname, bin_size)
-            elif attach.id_dms:
-                datas = self.action_download(
-                    cr, uid, attach.id, context=context)
-                if datas:
-                    result[attach.id] = datas
+            elif len(attach.attachment_document_ids) == 0:
+                result[attach.id] = datas
+            else:
+                if attach.id_dms:
+                    if datas:
+                        result[attach.id] = datas
+                    else:
+                        result[attach.id] = ''
+                        _logger.warn('Access error of DMS')
                 else:
                     result[attach.id] = ''
-                    _logger.warn('Access error of DMS')
-            else:
-                result[attach.id] = ''
-                _logger.warn('Attachment %s has no id_dms', attach.name)
+                    _logger.warn('Attachment %s has no id_dms', attach.name)
         return result
 
     _columns = {
