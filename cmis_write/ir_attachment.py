@@ -86,25 +86,9 @@ class ir_attachment(orm.Model):
         # if bool_testdoc in context, we don't need to create
         # the doc in the DMS
         if not context.get('bool_testdoc'):
-            try:
                 create_doc_in_edm.delay(
                     session, 'ir.attachment', value, res, dict_metadata,
                     user_login)
-
-            except (orm.except_orm, osv.except_osv):
-                self.unlink(
-                    cr, SUPERUSER_ID, res, context=context
-                )
-                raise
-
-            except Exception as e:
-                self.unlink(
-                    cr, uid, res, context=context
-                )
-                raise orm.except_orm(
-                    _('Error!'),
-                    _('Cannot save the attachment in DMS.') + '\n' + ustr(e)
-                )
         return res
 
     def action_download(self, cr, uid, ids, context=None):
@@ -130,7 +114,7 @@ class ir_attachment(orm.Model):
                             ], context=context)
                         # Connect to the backend
                         repo = cmis_backend_obj.check_auth(
-                            cr, uid, [backend], context=context)
+                            cr, uid, backend, context=context)
                         # Get the id of document
                         id_dms = doc.object_doc_id
                         # Get results from id of document
