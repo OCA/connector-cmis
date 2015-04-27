@@ -22,11 +22,11 @@
 
 {
     'name': 'CMIS',
-    'version': '1.0',
+    'version': '7.0.1.1.0',
     'category': 'Connector',
-    'summary': 'Cmis Connector',
+    'summary': 'Connect OpenERP with a CMIS server',
     'description': """
-Cmis Connector
+CMIS Connector
 ==============
 
 This module is the base for OpenERP modules implementing different integration
@@ -41,8 +41,9 @@ Create a new CMIS backend with the host, login and password.
 Contributors
 ------------
 * El Hadji Dem (elhadji.dem@savoirfairelinux.com)
+* Maxime Chambreuil (maxime.chambreuil@savoirfairelinux.com)
 """,
-    'author': "Savoir-faire Linux,Odoo Community Association (OCA)",
+    'author': "Savoir-faire Linux, Odoo Community Association (OCA)",
     'website': 'www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'depends': [
@@ -52,8 +53,8 @@ Contributors
         'python': ['cmislib'],
     },
     'data': [
-        'cmis_backend_view.xml',
-        'cmis_menu.xml',
+        'views/cmis_backend_view.xml',
+        'views/cmis_menu.xml',
     ],
     'installable': True,
     'auto_install': False,
