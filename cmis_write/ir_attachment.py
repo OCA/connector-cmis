@@ -20,12 +20,10 @@
 #
 ##############################################################################
 
-from openerp.osv import orm, osv, fields
+from openerp.osv import orm, fields
 from openerp.addons.connector.session import ConnectorSession
 from .unit.import_synchronizer import create_doc_in_edm
 from openerp import SUPERUSER_ID
-from openerp.tools.translate import _
-from openerp.tools import ustr
 
 import logging
 _logger = logging.getLogger(__name__)

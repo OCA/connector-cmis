@@ -21,8 +21,6 @@
 ##############################################################################
 
 from openerp.addons.connector.queue.job import job
-from openerp.osv import orm, osv
-from openerp import SUPERUSER_ID
 import base64
 import logging
 _logger = logging.getLogger(__name__)
