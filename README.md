@@ -3,3 +3,12 @@
 
 Connector-cmis
 ==============
+
+[//]: # (addons)
+Available addons
+----------------
+addon | version | summary
+--- | --- | ---
+[cmis](cmis/) | 1.0 | Cmis Connector
+
+[//]: # (end addons)
