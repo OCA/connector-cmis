@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -20,8 +20,9 @@
 #
 ##############################################################################
 
-from openerp.addons.connector.connector import (Environment,
-                                                install_in_connector)
+from openerp.addons.connector.connector import (
+    Environment, install_in_connector)
+from openerp.addons.connector.checkpoint import checkpoint
 
 install_in_connector()
 
@@ -34,3 +35,19 @@ def get_environment(session, model_name, backend_id):
     lang_code = lang.code if lang else 'en_US'
     env.set_lang(code=lang_code)
     return env
+
+
+def add_checkpoint(session, model_name, record_id, backend_id):
+    """ Add a row in the model ``connector.checkpoint`` for a record,
+    meaning it has to be reviewed by a user.
+    :param session: current session
+    :type session: :class:`openerp.addons.connector.session.ConnectorSession`
+    :param model_name: name of the model of the record to be reviewed
+    :type model_name: str
+    :param record_id: ID of the record to be reviewed
+    :type record_id: int
+    :param backend_id: ID of the Cmis Backend
+    :type backend_id: int
+    """
+    return checkpoint.add_checkpoint(
+        session, model_name, record_id, 'cmis.backend', backend_id)

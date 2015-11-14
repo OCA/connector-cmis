@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Savoir-faire Linux
+#    This module copyright (C) 2015 - Present Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,11 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-import openerp.addons.connector.backend as backend
-
-
-cmis = backend.Backend('cmis')
-""" Generic CMIS Backend """
-
-cmis1000 = backend.Backend(parent=cmis, version='1.0')
-""" CMIS Backend for version 1.0 """
+from . import backend_adapter
+from . import binder
+from . import import_synchronizer
+from . import mapper

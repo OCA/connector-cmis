@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -22,9 +22,10 @@
 
 from openerp.osv import orm, fields
 from openerp.tools.translate import _
-from cmislib.model import CmisClient
+from openerp.addons.connector.connector import Environment
+from openerp.addons.connector.session import ConnectorSession
+from .unit.backend_adapter import CmisAdapter
 import cmislib.exceptions
-import urllib2
 
 
 class cmis_backend(orm.Model):
@@ -35,32 +36,27 @@ class cmis_backend(orm.Model):
     _columns = {
         'version': fields.selection(
             lambda self, *a, **kw: self._select_versions(*a, **kw),
-            string='Version',
+            'Version',
             required=True,
         ),
         'location': fields.char(
             'Location',
-            size=128,
             required=True,
         ),
         'username': fields.char(
             'Username',
-            size=64,
             required=True,
         ),
         'password': fields.char(
             'Password',
-            size=64,
             required=True,
         ),
         'initial_directory_read': fields.char(
             'Initial directory for reading',
-            size=128,
             required=True,
         ),
         'initial_directory_write': fields.char(
             'Initial directory for writing',
-            size=128,
             required=True,
         ),
         'browsing_ok': fields.boolean(
@@ -75,46 +71,36 @@ class cmis_backend(orm.Model):
         'initial_directory_write': '/',
     }
 
-    def _select_versions(self, cr, uid, context=None):
+    def select_versions(self, cr, uid, context=None):
+        """ Available versions in the backend.
+        Can be inherited to add custom versions. Using this method
+        to add a version from an ``_inherit`` does not constrain
+        to redefine the ``version`` field in the ``_inherit`` model.
+        """
         return [('1.0', '1.0')]
 
-    def _auth(self, cr, uid, ids, context=None):
-        """Test connection with CMIS"""
-        if context is None:
-            context = self.pool['res.users'].context_get(cr, uid)
-        # Get the url, user and password for CMIS
-        # ids = self.search(cr, uid, [])
-        if not ids:
-            raise orm.except_orm(
-                _('Internal Error'),
-                _('Something very wrong happened. _auth() '
-                    'called without any ids.')
-            )
-        if type(ids) is not list:
-            ids = [ids]
-        res = self.read(
-            cr, uid, ids, [
-                'location',
-                'username',
-                'password'
-            ], context=context
-        )[0]
-        url = res['location']
-        user_name = res['username']
-        user_password = res['password']
-        client = CmisClient(url, user_name, user_password)
+    def _select_versions(self, cr, uid, context=None):
+        """ Available versions in the backend.
+        If you want to add a version, do not override this
+        method, but ``select_version``.
+        """
+        return self.select_versions(cr, uid, context=context)
 
-        try:
-            return client.defaultRepository
-        except cmislib.exceptions.ObjectNotFoundException:
-            raise orm.except_orm(_('CMIS connection Error!'),
-                                 _("Check your CMIS account configuration."))
-        except cmislib.exceptions.PermissionDeniedException:
-            raise orm.except_orm(_('CMIS connection Error!'),
-                                 _("Check your CMIS account configuration."))
-        except urllib2.URLError:
-            raise orm.except_orm(_('CMIS connection Error!'),
-                                 _("SERVER is down."))
+    def _get_base_adapter(self, cr, uid, ids, context=None):
+        """
+        Get an adapter to test the backend connection
+        """
+        backend = self.browse(cr, uid, ids[0], context=context)
+        session = ConnectorSession(cr, uid, context=context)
+        environment = Environment(backend, session, None)
+
+        return CmisAdapter(environment)
+
+    def check_auth(self, cr, uid, ids, context=None):
+        """ Check the authentication with DMS """
+
+        adapter = self._get_base_adapter(cr, uid, ids, context=context)
+        return adapter._auth(ids)
 
     def check_directory_of_write(self, cr, uid, ids, context=None):
         """Check access right to write from the path"""
@@ -123,7 +109,7 @@ class cmis_backend(orm.Model):
         cmis_backend_obj = self.pool.get('cmis.backend')
         datas_fname = 'testdoc'
         # login with the cmis account
-        repo = self._auth(cr, uid, ids, context=context)
+        repo = self.check_auth(cr, uid, ids, context=context)
         cmis_backend_rec = cmis_backend_obj.read(
             cr, uid, ids, ['initial_directory_write'],
             context=context)[0]
@@ -159,7 +145,7 @@ class cmis_backend(orm.Model):
             cr, uid, ids, ['initial_directory_read'],
             context=context)[0]
         # Login with the cmis account
-        repo = self._auth(cr, uid, ids, context=context)
+        repo = self.check_auth(cr, uid, ids, context=context)
         folder_path_read = cmis_backend_rec['initial_directory_read']
         # Testing the path
         rs = repo.query("SELECT cmis:path FROM  cmis:folder ")

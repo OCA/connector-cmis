@@ -2,7 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2014 Savoir-faire Linux
+#    This module copyright (C) 2015 - Present Savoir-faire Linux
 #    (<http://www.savoirfairelinux.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -16,15 +16,26 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#    along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
 
-import openerp.addons.connector.backend as backend
+from openerp.osv import orm, fields
 
 
-cmis = backend.Backend('cmis')
-""" Generic CMIS Backend """
+class CmisBinding(orm.AbstractModel):
+    _name = 'cmis.binding'
+    _inherit = 'external.binding'
+    _description = 'DMS Binding (Abstract)'
 
-cmis1000 = backend.Backend(parent=cmis, version='1.0')
-""" CMIS Backend for version 1.0 """
+    _columns = {
+        'backend_id': fields.many2one(
+            'cmis.backend', 'CMIS Backend', required=True,
+            ondelete='restrict'
+        ),
+        'dms_id': fields.integer('ID in Dms', required=True),
+        'sync_date': fields.datetime(
+            'Last Synchronization Date', required=True),
+        'updated_on': fields.datetime('Last Update in Dms')
+
+    }
