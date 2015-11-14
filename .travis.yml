@@ -1,7 +1,7 @@
 language: python
 sudo: false
 cache:
-  apt:true
+  apt: true
   directories:
     - $HOME/.cache/pip
 
