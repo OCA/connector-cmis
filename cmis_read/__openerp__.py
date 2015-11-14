@@ -68,7 +68,6 @@ Contributors
     ],
     'data': [
         'security/ir.model.access.csv',
-        'wizard/ir_attachment_dms_wizard_view.xml',
         'wizard/ir_attachment_dms_view.xml',
     ],
     'js': [
