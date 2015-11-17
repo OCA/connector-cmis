@@ -56,6 +56,7 @@ Usage
 
 Contributors
 ------------
+
 * El Hadji Dem (elhadji.dem@savoirfairelinux.com)
 * Maxime Chambreuil (maxime.chambreuil@savoirfairelinux.com)
 """,
