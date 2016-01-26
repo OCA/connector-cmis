@@ -47,8 +47,8 @@ class ir_attachment(orm.Model):
             # Get the extension file
             ext = ''
             if values['file_type']:
-                ext = '.' + values['file_type'][values['file_type'].find('/')
-                                                + 1:]
+                ext = '.' + values['file_type'][values['file_type'].
+                                                find('/') + 1:]
             if not values.get('datas_fname'):
                 values['datas_fname'] = values.get('name') + ext
             value = {
