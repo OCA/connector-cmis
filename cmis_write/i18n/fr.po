@@ -1,0 +1,209 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# 	* cmis_write
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenERP Server 7.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-03-31 15:43+0000\n"
+"PO-Revision-Date: 2015-03-31 11:51-0500\n"
+"Last-Translator: EL Hadji DEM <elhadji.dem@savoirfairelinux.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 1.5.4\n"
+
+#. module: cmis_write
+#: view:ir.attachment:0
+msgid "AttachmentDocBackendTree"
+msgstr ""
+
+#. module: cmis_write
+#: code:addons/cmis_write/ir_attachment.py:229
+#, python-format
+msgid "Document is not available in DMS; Please try again"
+msgstr "Document n'est pas disponible dans la GED; SVP, réessayer"
+
+#. module: cmis_write
+#: view:metadata:0
+msgid "Object"
+msgstr ""
+
+#. module: cmis_write
+#: model:ir.model,name:cmis_write.model_metadata_list
+msgid "List of Metadata"
+msgstr "Liste des métadonnées"
+
+#. module: cmis_write
+#. openerp-web
+#: code:addons/cmis_write/static/src/js/document.js:19
+#, python-format
+msgid "Document is not available in DMS.Please try again !!!"
+msgstr "Document n'est pas disponible dans la GED; SVP, réessayer !!!"
+
+#. module: cmis_write
+#: field:ir.attachment,id_dms:0
+msgid "Id of Dms"
+msgstr "Id de la GED"
+
+#. module: cmis_write
+#: field:ir.attachment.download,attachment_id:0
+#: help:ir.attachment.download,attachment_id:0
+msgid "Attachment"
+msgstr "Document"
+
+#. module: cmis_write
+#: code:addons/cmis_write/ir_attachment.py:228
+#, python-format
+msgid "Access error of document"
+msgstr "Erreur d'accès au document"
+
+#. module: cmis_write
+#: field:ir.attachment.doc.backend,attachment_id:0
+#: help:ir.attachment.doc.backend,attachment_id:0
+msgid "Document"
+msgstr "Document"
+
+#. module: cmis_write
+#: field:ir.attachment.download,type:0 help:ir.attachment.download,type:0
+msgid "Type"
+msgstr "Type"
+
+#. module: cmis_write
+#: model:ir.model,name:cmis_write.model_metadata
+#: field:metadata.list,metadata_id:0 help:metadata.list,metadata_id:0
+msgid "Metadata"
+msgstr "Métadonnées"
+
+#. module: cmis_write
+#. openerp-web
+#: code:addons/cmis_write/static/src/js/document.js:31
+#, python-format
+msgid "Uploading Error"
+msgstr "Erreur d'ajout"
+
+#. module: cmis_write
+#: model:ir.actions.act_window,name:cmis_write.action_metadata
+#: model:ir.ui.menu,name:cmis_write.menu_action_metadata
+msgid "Metadata Editing"
+msgstr "Modification de métadonnées"
+
+#. module: cmis_write
+#: field:ir.attachment,attachment_document_ids:0
+#: help:ir.attachment,attachment_document_ids:0
+msgid "Records"
+msgstr "Enregistrements"
+
+#. module: cmis_write
+#: field:ir.attachment,download_id:0 help:ir.attachment,download_id:0
+msgid "Attachment download"
+msgstr "Télécharger document"
+
+#. module: cmis_write
+#: model:ir.model,name:cmis_write.model_ir_attachment
+msgid "ir.attachment"
+msgstr ""
+
+#. module: cmis_write
+#: field:ir.attachment.doc.backend,object_doc_id:0
+#: help:ir.attachment.doc.backend,object_doc_id:0
+msgid "Id of document backend"
+msgstr "Id du document dans le backend"
+
+#. module: cmis_write
+#: model:ir.model,name:cmis_write.model_ir_attachment_download
+msgid "ir.attachment.download"
+msgstr ""
+
+#. module: cmis_write
+#: view:ir.attachment:0
+msgid "Indexed Content"
+msgstr "Contenu Indexé"
+
+#. module: cmis_write
+#: field:metadata,name:0 help:metadata,name:0
+msgid "Name"
+msgstr "Nom"
+
+#. module: cmis_write
+#: field:metadata,model_ids:0 help:metadata,model_ids:0
+msgid "Model List"
+msgstr "Liste de modèles"
+
+#. module: cmis_write
+#: view:ir.attachment:0
+msgid "AttachmentDocBackendForm"
+msgstr ""
+
+#. module: cmis_write
+#: field:metadata,metadata_list_ids:0 help:metadata,metadata_list_ids:0
+msgid "List of fields"
+msgstr "Liste des champs"
+
+#. module: cmis_write
+#: field:metadata,field_ids:0 help:metadata,field_ids:0
+#: field:metadata.list,field_id:0 help:metadata.list,field_id:0
+msgid "Fields"
+msgstr "Champs"
+
+#. module: cmis_write
+#: view:metadata:0
+msgid "Metadata list fields form"
+msgstr ""
+
+#. module: cmis_write
+#: code:addons/cmis_write/ir_attachment.py:105
+#, python-format
+msgid "Error!"
+msgstr "Erreur!"
+
+#. module: cmis_write
+#: view:metadata:0
+msgid "Metadata list fields Tree"
+msgstr ""
+
+#. module: cmis_write
+#: field:metadata,model_id:0 help:metadata,model_id:0
+msgid "Model"
+msgstr "Modèle"
+
+#. module: cmis_write
+#: code:addons/cmis_write/ir_attachment.py:106
+#, python-format
+msgid "Cannot save the attachment in DMS."
+msgstr "Impossible de sauvegarder le document dans la GED"
+
+#. module: cmis_write
+#: model:ir.model,name:cmis_write.model_ir_attachment_doc_backend
+msgid "List of backend's document"
+msgstr "Liste des documents"
+
+#. module: cmis_write
+#: field:ir.attachment.download,file_type:0
+#: help:ir.attachment.download,file_type:0
+msgid "Content Type"
+msgstr "Type de contenu"
+
+#. module: cmis_write
+#: help:ir.attachment,id_dms:0
+msgid "Id of Dms."
+msgstr "Id de la GED."
+
+#. module: cmis_write
+#: field:ir.attachment.download,name:0 help:ir.attachment.download,name:0
+msgid "Attachment Name"
+msgstr "Nom du document"
+
+#. module: cmis_write
+#: field:ir.attachment.download,datas:0
+msgid "File"
+msgstr "Fichier"
+
+#. module: cmis_write
+#: field:ir.attachment.doc.backend,backend_id:0
+#: help:ir.attachment.doc.backend,backend_id:0
+msgid "Backend"
+msgstr "Backend"
