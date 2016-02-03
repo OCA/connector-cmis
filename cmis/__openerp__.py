@@ -56,6 +56,6 @@ Contributors
         'views/cmis_backend_view.xml',
         'views/cmis_menu.xml',
     ],
-    'installable': True,
+    'installable': False,
     'auto_install': False,
 }
