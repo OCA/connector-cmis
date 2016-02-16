@@ -22,7 +22,7 @@
 
 {
     'name': 'CMIS',
-    'version': '7.0.1.1.0',
+    'version': '9.0.1.0.0',
     'category': 'Connector',
     'summary': 'Connect OpenERP with a CMIS server',
     'description': """
@@ -56,6 +56,6 @@ Contributors
         'views/cmis_backend_view.xml',
         'views/cmis_menu.xml',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
 }
