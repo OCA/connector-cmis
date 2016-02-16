@@ -1,138 +1,98 @@
 # -*- coding: utf-8 -*-
 # © 2014-2015 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import cmislib.exceptions
 
-from openerp.osv import orm, fields
+from openerp import api, fields, models
+from openerp.exceptions import Warning
 from openerp.tools.translate import _
 from openerp.addons.connector.connector import Environment
 from openerp.addons.connector.session import ConnectorSession
 from .unit.backend_adapter import CmisAdapter
-import cmislib.exceptions
+from .exceptions import CMISError
 
 
-class cmis_backend(orm.Model):
+class CmisBackend(models.Model):
     _name = 'cmis.backend'
     _description = 'CMIS Backend'
     _inherit = 'connector.backend'
+
     _backend_type = 'cmis'
-    _columns = {
-        'version': fields.selection(
-            lambda self, *a, **kw: self._select_versions(*a, **kw),
-            'Version',
-            required=True,
-        ),
-        'location': fields.char(
-            'Location',
-            required=True,
-        ),
-        'username': fields.char(
-            'Username',
-            required=True,
-        ),
-        'password': fields.char(
-            'Password',
-            required=True,
-        ),
-        'initial_directory_read': fields.char(
-            'Initial directory for reading',
-            required=True,
-        ),
-        'initial_directory_write': fields.char(
-            'Initial directory for writing',
-            required=True,
-        ),
-        'browsing_ok': fields.boolean(
-            'Allow browsing this backend',
-        ),
-        'storing_ok': fields.boolean(
-            'Allow storing in this backend',
-        ),
-    }
-    _defaults = {
-        'initial_directory_read': '/',
-        'initial_directory_write': '/',
-    }
 
-    def select_versions(self, cr, uid, context=None):
-        """ Available versions in the backend.
-        Can be inherited to add custom versions. Using this method
-        to add a version from an ``_inherit`` does not constrain
-        to redefine the ``version`` field in the ``_inherit`` model.
-        """
-        return [('1.0', '1.0')]
 
-    def _select_versions(self, cr, uid, context=None):
-        """ Available versions in the backend.
-        If you want to add a version, do not override this
-        method, but ``select_version``.
-        """
-        return self.select_versions(cr, uid, context=context)
+    version = fields.Selection(
+        selection=[('1.0', '1.0')], required=True)
+    location = fields.Char(
+        required=True)
+    username = fields.Char(
+        required=True)
+    password = fields.Char(
+        required=True)
+    initial_directory_read = fields.Char(
+        'Initial directory for reading', required=True, default='/')
+    initial_directory_write = fields.Char(
+        'Initial directory for writing', required=True, default='/')
+    browsing_ok = fields.Boolean(
+        'Allow browsing this backend')
+    storing_ok = fields.Boolean(
+        'Allow storing in this backend')
 
-    def _get_base_adapter(self, cr, uid, ids, context=None):
+    @api.multi
+    def _get_base_adapter(self):
         """
         Get an adapter to test the backend connection
         """
-        backend = self.browse(cr, uid, ids[0], context=context)
-        session = ConnectorSession(cr, uid, context=context)
-        environment = Environment(backend, session, None)
-
+        self.ensure_one()
+        session = ConnectorSession.from_env(self.env)
+        environment = Environment(self, session, None)
         return CmisAdapter(environment)
 
-    def check_auth(self, cr, uid, ids, context=None):
+    @api.multi
+    def check_auth(self):
         """ Check the authentication with DMS """
+        self.ensure_one()
+        adapter = self._get_base_adapter()
+        return adapter._auth(self)
 
-        adapter = self._get_base_adapter(cr, uid, ids, context=context)
-        return adapter._auth(ids)
-
-    def check_directory_of_write(self, cr, uid, ids, context=None):
+    @api.multi
+    def check_directory_of_write(self):
         """Check access right to write from the path"""
-        if context is None:
-            context = self.pool['res.users'].context_get(cr, uid)
-        cmis_backend_obj = self.pool.get('cmis.backend')
         datas_fname = 'testdoc'
-        # login with the cmis account
-        repo = self.check_auth(cr, uid, ids, context=context)
-        cmis_backend_rec = cmis_backend_obj.read(
-            cr, uid, ids, ['initial_directory_write'],
-            context=context)[0]
-        folder_path_write = cmis_backend_rec['initial_directory_write']
-        # Testing the path
-        rs = repo.query("SELECT cmis:path FROM  cmis:folder")
-        bool_path_write = self.check_existing_path(rs, folder_path_write)
-        # Check if we can create a doc from OE to EDM
-        # Document properties
-        if bool_path_write:
-            sub = repo.getObjectByPath(folder_path_write)
-            try:
-                sub.createDocumentFromString(
-                    datas_fname,
-                    contentString='hello, world',
-                    contentType='text/plain')
-            except cmislib.exceptions.UpdateConflictException:
-                raise orm.except_orm(
-                    _('Cmis  Error!'),
-                    _("The test file already exists in the DMS. "
-                      "Please remove it and try again."))
-            except cmislib.exceptions.RuntimeException:
-                raise orm.except_orm(
-                    _('Cmis access right Error!'),
-                    ("Please check your access right."))
-        self.get_error_for_path(bool_path_write, folder_path_write)
+        for this in self:
+            # login with the cmis account
+            repo = this.check_auth()
+            folder_path_write = this.initial_directory_write
+            # Testing the path
+            rs = repo.query("SELECT cmis:path FROM  cmis:folder")
+            bool_path_write = self.check_existing_path(rs, folder_path_write)
+            # Check if we can create a doc from OE to EDM
+            # Document properties
+            if bool_path_write:
+                sub = repo.getObjectByPath(folder_path_write)
+                try:
+                    sub.createDocumentFromString(
+                        datas_fname,
+                        contentString='hello, world',
+                        contentType='text/plain')
+                except cmislib.exceptions.UpdateConflictException:
+                    raise CMISError(
+                        _("The test file already exists in the DMS. "
+                          "Please remove it and try again."))
+                except cmislib.exceptions.RuntimeException:
+                    raise CMISError(
+                        ("Please check your access right."))
+            self.get_error_for_path(bool_path_write, folder_path_write)
 
-    def check_directory_of_read(self, cr, uid, ids, context=None):
+    @api.multi
+    def check_directory_of_read(self):
         """Check access right to read from the path"""
-        if context is None:
-            context = self.pool['res.users'].context_get(cr, uid)
-        cmis_backend_rec = self.read(
-            cr, uid, ids, ['initial_directory_read'],
-            context=context)[0]
-        # Login with the cmis account
-        repo = self.check_auth(cr, uid, ids, context=context)
-        folder_path_read = cmis_backend_rec['initial_directory_read']
-        # Testing the path
-        rs = repo.query("SELECT cmis:path FROM  cmis:folder ")
-        bool_path_read = self.check_existing_path(rs, folder_path_read)
-        self.get_error_for_path(bool_path_read, folder_path_read)
+        for this in self:
+            repo = this.check_auth()
+            folder_path_read = this.initial_directory_read
+            # Testing the path
+            rs = repo.query("SELECT cmis:path FROM  cmis:folder ")
+            bool_path_read = self.check_existing_path(rs, folder_path_read)
+            self.get_error_for_path(bool_path_read, folder_path_read)
 
     def check_existing_path(self, rs, folder_path):
         """Function to check if the path is correct"""
@@ -146,11 +106,9 @@ class cmis_backend(orm.Model):
     def get_error_for_path(self, is_valid, path):
         """Return following the boolean the right error message"""
         if is_valid:
-            raise orm.except_orm(_('Cmis  Message'),
-                                 _("Path is correct for : %s") % path)
+            raise Warning(_("Path is correct for : %s") % path)
         else:
-            raise orm.except_orm(_('Cmis  Error!'),
-                                 _("Error path for : %s") % path)
+            raise CMISError( _("Error path for : %s") % path)
 
     def sanitize_input(self, file_name):
         """Prevent injection by escaping: '%_"""

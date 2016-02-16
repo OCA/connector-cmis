@@ -2,22 +2,18 @@
 # © 2014-2015 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import orm, fields
+from openerp import fields, models
 
 
-class CmisBinding(orm.AbstractModel):
+class CmisBinding(models.AbstractModel):
     _name = 'cmis.binding'
     _inherit = 'external.binding'
     _description = 'DMS Binding (Abstract)'
 
-    _columns = {
-        'backend_id': fields.many2one(
-            'cmis.backend', 'CMIS Backend', required=True,
-            ondelete='restrict'
-        ),
-        'dms_id': fields.integer('ID in Dms', required=True),
-        'sync_date': fields.datetime(
-            'Last Synchronization Date', required=True),
-        'updated_on': fields.datetime('Last Update in Dms')
-
-    }
+    backend_id = fields.Many2one(
+        'cmis.backend', 'CMIS Backend', required=True,
+        ondelete='restrict')
+    dms_id = fields.Integer('ID in Dms', required=True)
+    sync_date = fields.Datetime(
+        'Last Synchronization Date', required=True)
+    updated_on = fields.Datetime('Last Update in Dms')
