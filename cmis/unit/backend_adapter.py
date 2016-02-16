@@ -18,7 +18,7 @@ class CmisAdapter(CRUDAdapter):
         cmis_backend.ensure_one()
         client = CmisClient(
             cmis_backend.location,
-            cmis_backend.username, 
+            cmis_backend.username,
             cmis_backend.password)
 
         try:
