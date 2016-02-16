@@ -20,10 +20,4 @@
 #
 ##############################################################################
 
-from . import (
-    test_model,
-)
-
-checks = [
-    test_model,
-]
+from . import test_model
