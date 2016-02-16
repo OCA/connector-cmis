@@ -8,8 +8,8 @@ from openerp.exceptions import Warning
 from openerp.tools.translate import _
 from openerp.addons.connector.connector import Environment
 from openerp.addons.connector.session import ConnectorSession
-from .unit.backend_adapter import CmisAdapter
-from .exceptions import CMISError
+from ..unit.backend_adapter import CmisAdapter
+from ..exceptions import CMISError
 
 
 class CmisBackend(models.Model):
