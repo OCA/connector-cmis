@@ -20,11 +20,8 @@
 #
 ##############################################################################
 
-from openerp.addons.connector.connector import (
-    Environment, install_in_connector)
+from openerp.addons.connector.connector import Environment
 from openerp.addons.connector.checkpoint import checkpoint
-
-install_in_connector()
 
 
 def get_environment(session, model_name, backend_id):
