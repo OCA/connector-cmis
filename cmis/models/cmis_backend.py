@@ -19,7 +19,6 @@ class CmisBackend(models.Model):
 
     _backend_type = 'cmis'
 
-
     version = fields.Selection(
         selection=[('1.0', '1.0')], required=True)
     location = fields.Char(
@@ -108,7 +107,7 @@ class CmisBackend(models.Model):
         if is_valid:
             raise Warning(_("Path is correct for : %s") % path)
         else:
-            raise CMISError( _("Error path for : %s") % path)
+            raise CMISError(_("Error path for : %s") % path)
 
     def sanitize_input(self, file_name):
         """Prevent injection by escaping: '%_"""
