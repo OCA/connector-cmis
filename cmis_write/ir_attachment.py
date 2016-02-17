@@ -32,7 +32,7 @@ _logger = logging.getLogger(__name__)
 class ir_attachment(orm.Model):
     _inherit = 'ir.attachment'
 
-    def create(self, cr, uid, values, context=None):
+    def __create(self, cr, uid, values, context=None):
         if context is None:
             context = {}
         metadata_obj = self.pool['metadata']
@@ -41,12 +41,12 @@ class ir_attachment(orm.Model):
         session = ConnectorSession(cr, uid, context=context)
         value = {}
         if values.get('datas'):
-            values['file_type'], values['index_content'] = self._index(
+            values['index_content'] = self._index(
                 cr, uid, values['datas'],
                 values.get('datas_fname', False), None)
             # Get the extension file
             ext = ''
-            if values['file_type']:
+            if values.get('file_type'):
                 ext = '.' + values['file_type'][values['file_type'].
                                                 find('/') + 1:]
             if not values.get('datas_fname'):
@@ -130,7 +130,7 @@ class ir_attachment(orm.Model):
                 return ir.db_datas
         return datas
 
-    def _data_set(self, cr, uid, id, name, value, arg, context=None):
+    def __data_set(self, cr, uid, id, name, value, arg, context=None):
         # We don't handle setting data to null
         if not value:
             return True
@@ -196,13 +196,13 @@ class ir_attachment(orm.Model):
             'Attachment download',
             help="Attachment download"
         ),
-        'datas': fields.function(
-            _data_get,
-            fnct_inv=_data_set,
-            string='File Content',
-            type="binary",
-            nodrop=True
-        ),
+        #'datas': fields.function(
+        #    _data_get,
+        #    fnct_inv=_data_set,
+        #    string='File Content',
+        #    type="binary",
+        #    nodrop=True
+        #),
         'attachment_document_ids': fields.one2many(
             'ir.attachment.doc.backend',
             'attachment_id',

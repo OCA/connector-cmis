@@ -3,12 +3,12 @@
   <data>
 
     <!--Inherit ir.attachment Form View-->
-    <record model="ir.ui.view" id="view_document_file_form_doc_backend">
+    <record model="ir.ui.view" id="view_attachment_form_doc_backend">
       <field name="name">ir.attachment.doc.backend</field>
       <field name="model">ir.attachment</field>
-      <field name="inherit_id" ref="document.view_document_file_form"/>
+      <field name="inherit_id" ref="base.view_attachment_form"/>
       <field name="arch" type="xml">
-        <group string="Indexed Content" position="after">
+        <xpath expr="//group/group[last()]" position="after">
           <group col="2" colspan="4">
             <field name="attachment_document_ids" nolabel="1" readonly="1">
               <tree string="AttachmentDocBackendTree">
@@ -21,7 +21,7 @@
               </form>
             </field>
           </group>
-        </group>
+        </xpath>
       </field>
     </record>
 
