@@ -2,54 +2,60 @@
 # © 2014-2015 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp.osv import orm, fields
+from openerp import api, fields, models
 
 
-class metadata(orm.Model):
+class Metadata(models.Model):
     _name = "metadata"
     _description = "Metadata"
-    _columns = {
-        'name': fields.char("Name", required=True, select=1, help="Name"),
-        'model_id': fields.many2one(
-            'ir.model',
-            'Model',
-            required=True,
-            select=1,
-            help="Model"
-        ),
-        'field_ids': fields.many2many(
-            'ir.model.fields',
-            'metadata_field_rel',
-            'meta_id', 'field_id',
-            'Fields',
-            help="Fields"
-        ),
-        'metadata_list_ids': fields.one2many(
-            'metadata.list',
-            'metadata_id',
-            'List of fields',
-            help="List of fields"
-        ),
-        'model_ids': fields.many2many(
-            'ir.model',
-            string='Model List',
-            help="Model List"
-        ),
-    }
+    name = fields.Char("Name", required=True, select=1, help="Name")
+    model_id = fields.Many2one(
+        'ir.model',
+        'Model',
+        required=True,
+        select=1,
+    )
+    field_ids = fields.Many2many(
+        'ir.model.fields',
+        'metadata_field_rel',
+        'meta_id', 'field_id',
+        'Fields',
+    )
+    metadata_list_ids = fields.One2many(
+        'metadata.list',
+        'metadata_id',
+        'List of fields',
+        help="List of fields"
+    )
+    model_ids = fields.Many2many(
+        'ir.model',
+        string='Model List',
+        help="Model List"
+    )
 
-    def onchange_model(self, cr, uid, ids, model_id, context=None):
-        if context is None:
-            context = {}
-        if not model_id:
-            return {'value': {'model_ids': [(6, 0, [])]}}
-        model_ids = [model_id]
-        model_obj = self.pool.get('ir.model')
-        active_model_obj = self.pool.get(model_obj.browse(
-            cr, uid, model_id, context=context).model)
-        if active_model_obj._inherits:
-            for key, val in active_model_obj._inherits.items():
-                found_model_ids = model_obj.search(cr,
-                                                   uid, [('model', '=', key)],
-                                                   context=context)
-                model_ids += found_model_ids
-        return {'value': {'model_ids': [(6, 0, model_ids)]}}
+    @api.model
+    def extract_metadata(self, instance):
+        """Extract metadata for the given model instance
+        """
+        metadata = {}
+        if not instance:
+            return metadata
+        # Get list of metadata
+        fields = self.env['metadata.list'].search([
+            ('metadata_id.model_id.model', '=', instance._name)])
+        list_fields = fields.mapped('field_id.name')
+        for attr in list_fields:
+            metadata['cmis:' + attr] = getattr(instance, attr)
+        return metadata
+
+    @api.onchange('model_id')
+    def onchange_model(self):
+        if not self.model_id:
+            self.model_ids = [(6, 0, [])]
+        model_ids = [self.model_id.id]
+        if self.model_id._inherits:
+            for key in self.model_id._inherits.keys():
+                found_model_ids = self.model_id.search(
+                    [('model', '=', key)])
+                model_ids += found_model_ids._ids
+        self.model_ids = [(6, 0, model_ids)]
