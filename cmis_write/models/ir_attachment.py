@@ -22,7 +22,7 @@
 
 from openerp.osv import orm, fields
 from openerp.addons.connector.session import ConnectorSession
-from .unit.import_synchronizer import create_doc_in_edm
+from ..unit.import_synchronizer import create_doc_in_edm
 from openerp import SUPERUSER_ID
 
 import logging
