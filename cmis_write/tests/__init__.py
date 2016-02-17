@@ -3,11 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from . import (
-    test_attachment,
+    test_ir_attachment,
     test_metadata,
 )
-
-checks = [
-    test_attachment,
-    test_metadata,
-]
