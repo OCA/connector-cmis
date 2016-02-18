@@ -20,6 +20,7 @@ class IrAttachment(models.Model):
         'Attachment download',
         help="Attachment download"
     )
+
     datas = fields.Binary(
         compute='_data_get',
         inverse='_data_set')
@@ -54,14 +55,18 @@ class IrAttachment(models.Model):
         """
         self.ensure_one()
         cmis_backend_obj = self.env['cmis.backend']
-        backend = cmis_backend_obj.search(('storing_ok', '=', 'True'))
+        backend = cmis_backend_obj.search([('storing_ok', '=', 'True')])
         backend.ensure_one()
-        repo = cmis_backend_obj.check_auth()
+        repo = backend.check_auth()
         # Get results from id of document
         query = " SELECT * FROM  cmis:document \
                 WHERE cmis:objectId ='" + self.id_dms + "'"
         results = repo.query(query)
-        datas = results[0].getContentStream().read().encode(
+         # workaround  bug in cmislib 0.5.1
+        # https://issues.apache.org/jira/browse/CMIS-701
+        result = results[0]
+        result.reload()
+        datas = result.getContentStream().read().encode(
             'base64')
         return datas
 
@@ -71,7 +76,14 @@ class IrAttachment(models.Model):
         """
         Get data from DMS
         """
-        self.ensure_one()
-        if self.id_dms:
-            self.datas = self.action_download()
-        super(IrAttachment, self)._data_get()
+        for rec in self:
+            if rec.id_dms:
+                rec.datas = rec.action_download()
+            else:
+                rec.datas = super(IrAttachment, rec)._data_get(
+                    'datas', None)[rec.id]
+
+    @api.multi
+    def _data_set(self):
+        for rec in self:
+            super(IrAttachment, rec)._data_set('datas', rec.datas, None)

@@ -4,7 +4,6 @@
 ###############################################################################
 
 from openerp.tests.common import TransactionCase
-from openerp.osv.orm import except_orm
 
 
 class test_ir_attachment(TransactionCase):
@@ -12,22 +11,18 @@ class test_ir_attachment(TransactionCase):
     def setUp(self):
         super(test_ir_attachment, self).setUp()
         # Clean up registries
-        self.registry('ir.model').clear_caches()
-        self.registry('ir.model.data').clear_caches()
+        self.env['ir.model'].clear_caches()
+        self.env['ir.model.data'].clear_caches()
         # Get registries
-        self.user_model = self.registry("res.users")
-        self.ir_attachment_model = self.registry("ir.attachment")
-        self.partner_model = self.registry('res.partner')
-        self.metadata_model = self.registry('metadata')
-        # Get context
-        self.context = self.user_model.context_get(self.cr, self.uid)
-
+        self.user_model = self.env["res.users"]
+        self.ir_attachment_model = self.env["ir.attachment"]
+        self.partner_model = self.env['res.partner']
+        self.metadata_model = self.env['metadata']
         partner_id = self.partner_model.create(
-            self.cr, self.uid,
             {'name': 'Test Partner',
              'email': 'test@localhost',
              'is_company': True,
-             }, context=None)
+             })
 
         blob1 = 'blob1'
         blob1_b64 = blob1.encode('base64')
@@ -43,33 +38,13 @@ class test_ir_attachment(TransactionCase):
         }
 
     def test_create_ir_attachment(self):
-        cr, uid, vals, context = self.cr, self.uid, self.vals, self.context
+        vals = self.vals
         vals['datas'] = None
-        context['bool_testdoc'] = True
-        ir_attachment_id = self.ir_attachment_model.create(
-            cr, uid, vals, context=context)
-        ir_attachment_pool = self.ir_attachment_model.browse(
-            cr, uid, ir_attachment_id, context=context)
+        ir_attachment = self.ir_attachment_model.with_context(
+            bool_testdoc=True).create(vals)
+        self.assertEqual(ir_attachment.name, vals['name'])
 
-        self.assertEqual(ir_attachment_pool.name, vals['name'])
-
-    def test_data_set(self):
-        cr, uid, vals = self.cr, self.uid, self.vals.copy()
-        context = self.context
-        ir_attachment_id = self.ir_attachment_model.create(
-            cr, uid, vals, context=context)
-        result = self.ir_attachment_model._data_set(
-            cr, uid, [], ir_attachment_id, '',
-            'testdata'.encode('base64'), context=context)
-        self.assertEqual(result, True)
-
-    def test_data_get(self):
-        cr, uid, vals = self.cr, self.uid, self.vals.copy()
-        context = self.context
-        vals['id_dms'] = ''
-        ir_attachment_id = self.ir_attachment_model.create(
-            cr, uid, vals, context=context)
-        self.assertRaises(
-            except_orm, self.ir_attachment_model._data_get,
-            cr, uid, [ir_attachment_id], None, None, context=self.context
-        )
+    def test_data_get_set(self):
+        ir_attachment = self.ir_attachment_model.with_context(
+            bool_testdoc=True).create(self.vals)
+        self.assertTrue(ir_attachment.datas)
