@@ -32,13 +32,24 @@ class IrAttachment(models.Model):
         help="Records"
     )
 
+    @api.multi
+    def must_be_stored_in_cmis(self):
+        self.ensure_one()
+        if 'bool_testdoc' in self.env.context:
+            return False
+        if not self.res_model:
+            return False
+        return True
+
     @api.model
     def create(self, values):
         res = super(IrAttachment, self).create(values)
         session = ConnectorSession.from_env(self.env)
         # if bool_testdoc in context, we don't need to create
         # the doc in the DMS
-        if 'bool_testdoc' not in self.env.context:
+        # if the attachment is not linked to a model, we dont create the doc 
+        # in DMSt
+        if res.must_be_stored_in_cmis():
             metadata = {}
             if res.res_model:
                 metadata = self.env['metadata'].extract_metadata(
