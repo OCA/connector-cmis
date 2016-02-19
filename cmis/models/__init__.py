@@ -5,4 +5,6 @@
 from . import (
     cmis_backend,
     cmis_binding,
+    cmis_object_ref,
+    cmis_folder,
 )

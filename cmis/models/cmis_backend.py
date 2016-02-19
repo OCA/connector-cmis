@@ -2,6 +2,7 @@
 # © 2014-2015 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import cmislib.exceptions
+from cmislib.exceptions import ObjectNotFoundException
 
 from openerp import api, fields, models
 from openerp.exceptions import Warning
@@ -92,6 +93,24 @@ class CmisBackend(models.Model):
             rs = repo.query("SELECT cmis:path FROM  cmis:folder ")
             bool_path_read = self.check_existing_path(rs, folder_path_read)
             self.get_error_for_path(bool_path_read, folder_path_read)
+
+    @api.multi
+    def get_object_by_path(self, path, create_if_not_found=True):
+        self.ensure_one()
+        repo = self.check_auth()
+        traversed = []
+        for part in path.split('/'):
+            try:
+                part = '%s' % part
+                traversed.append(part)
+                new_root = repo.getObjectByPath('/'.join(traversed))
+            except ObjectNotFoundException:
+                if create_if_not_found:
+                    new_root = repo.createFolder(root, part)
+                else:
+                    return False
+            root = new_root
+        return root
 
     def check_existing_path(self, rs, folder_path):
         """Function to check if the path is correct"""

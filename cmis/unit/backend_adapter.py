@@ -4,6 +4,7 @@
 
 from cmislib.model import CmisClient
 import cmislib.exceptions
+from cmislib.browser.binding import BrowserBinding
 import urllib2
 
 from openerp.tools.translate import _
@@ -19,7 +20,8 @@ class CmisAdapter(CRUDAdapter):
         client = CmisClient(
             cmis_backend.location,
             cmis_backend.username,
-            cmis_backend.password)
+            cmis_backend.password,
+            binding=BrowserBinding())
 
         try:
             return client.defaultRepository

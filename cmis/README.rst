@@ -13,7 +13,11 @@ It allows you to configure a CMIS backend in Odoo.
 Installation
 ============
 
-No installation required:
+To be compliant with the latest version of CMIS (1.1), the connector use
+the latest version of the python cmislib library not yet released at this
+stage. The lib can be installed with:
+
+pip install svn+https://svn.apache.org/repos/asf/chemistry/cmislib/trunk#egg=cmislib 
 
 Configuration
 =============
