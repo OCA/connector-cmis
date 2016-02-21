@@ -37,7 +37,7 @@ class CmisFolder(models.AbstractModel):
                 raise Warning(
                     _("Folder %s already exists in CMIS (backend: %s)" % (
                       rec.name, rec.backend_id.name)))
-            parent_cmis_object = backend.get_object_by_path(
+            parent_cmis_object = backend.get_folder_by_path(
                 self.get_initial_directory_write(backend),
                 create_if_not_found=True)
             cmis_objectid = rec._create_cmis_content(

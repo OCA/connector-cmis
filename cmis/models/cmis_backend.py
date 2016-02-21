@@ -95,9 +95,12 @@ class CmisBackend(models.Model):
             self.get_error_for_path(bool_path_read, folder_path_read)
 
     @api.multi
-    def get_object_by_path(self, path, create_if_not_found=True):
+    def get_folder_by_path(self, path, create_if_not_found=True,
+                           cmis_parent_objectid=None):
         self.ensure_one()
         repo = self.check_auth()
+        if  cmis_parent_objectid:
+            repo = repo.getObject(cmis_parent_objectid)
         traversed = []
         for part in path.split('/'):
             try:
