@@ -44,7 +44,7 @@ class CmisFolder(models.AbstractModel):
                 backend, parent_cmis_object)
             rec.write({
                 'cmis_objectid': cmis_objectid,
-                'bakend_id': backend.id
+                'backend_id': backend.id
                 })
             vals[rec.id] = cmis_objectid
         return vals

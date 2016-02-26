@@ -100,7 +100,8 @@ class CmisBackend(models.Model):
         self.ensure_one()
         repo = self.check_auth()
         if  cmis_parent_objectid:
-            repo = repo.getObject(cmis_parent_objectid)
+            path = repo.getObject(
+                cmis_parent_objectid).getPaths()[0] + '/' + path
         traversed = []
         for part in path.split('/'):
             try:
