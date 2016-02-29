@@ -6,7 +6,7 @@ import cmislib.exceptions
 from openerp import api, fields, models
 from openerp.exceptions import Warning
 from openerp.tools.translate import _
-from openerp.addons.connector.connector import Environment
+from openerp.addons.connector.connector import ConnectorEnvironment
 from openerp.addons.connector.session import ConnectorSession
 from ..unit.backend_adapter import CmisAdapter
 from ..exceptions import CMISError
@@ -43,7 +43,7 @@ class CmisBackend(models.Model):
         """
         self.ensure_one()
         session = ConnectorSession.from_env(self.env)
-        environment = Environment(self, session, None)
+        environment = ConnectorEnvironment(self, session, None)
         return CmisAdapter(environment)
 
     @api.multi
