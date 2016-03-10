@@ -6,10 +6,13 @@ from cmislib.model import CmisClient
 import cmislib.exceptions
 from cmislib.browser.binding import BrowserBinding
 import urllib2
+import logging
 
 from openerp.tools.translate import _
 from openerp.addons.connector.unit.backend_adapter import CRUDAdapter
 from openerp.addons.cmis.exceptions import CMISConnectionError
+
+logger = logging.getLogger(__name__)
 
 
 class CmisAdapter(CRUDAdapter):
@@ -26,11 +29,16 @@ class CmisAdapter(CRUDAdapter):
         try:
             return client.defaultRepository
         except cmislib.exceptions.ObjectNotFoundException:
+            logger.exception("CMIS backend not found")
             raise CMISConnectionError(
-                _("Check your CMIS account configuration."))
+                _("CMIS backend not found.\n"
+                  "Check your CMIS account configuration."))
         except cmislib.exceptions.PermissionDeniedException:
+            logger.exception("Permission denied")
             raise CMISConnectionError(
-                _("Check your CMIS account configuration."))
+                _("Permission denied.\n"
+                  "Check your CMIS account configuration."))
         except urllib2.URLError:
+            logger.exception("UrlError")
             raise CMISConnectionError(
                 _("SERVER is down."))

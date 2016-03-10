@@ -25,11 +25,12 @@ msgid "CMIS Backend"
 msgstr "Backend CMIS"
 
 #. module: cmis
-#: code:addons/cmis/unit/backend_adapter.py:55
-#: code:addons/cmis/unit/backend_adapter.py:58
+#: code:addons/cmis/unit/backend_adapter.py:34
 #, python-format
-msgid "Check your CMIS account configuration."
-msgstr "Vérifier la configuration de compte CMIS"
+msgid "CMIS backend not found.\n"
+"Check your CMIS account configuration."
+msgstr "Backend CMIS non trouvé.\n"
+"Vérifier la configuration de compte CMIS."
 
 #. module: cmis
 #: code:addons/cmis/unit/backend_adapter.py:54
@@ -97,6 +98,14 @@ msgstr "Permettre le stockage dans ce backend"
 #, python-format
 msgid "Path is correct for : %s"
 msgstr "Le chemin est correct pour : %s"
+
+#. module: cmis
+#: code:addons/cmis/unit/backend_adapter.py:39
+#, python-format
+msgid "Permission denied.\n"
+"Check your CMIS account configuration."
+msgstr "Permission refusée.\n"
+"Vérifier la configuration de compte CMIS."
 
 #. module: cmis
 #: view:cmis.backend:0
