@@ -13,11 +13,9 @@ class CmisFolder(models.AbstractModel):
     _name = 'cmis.folder'
     _inherit = 'cmis.object.ref'
 
-    name = fields.Char()
-
     @api.model
     def get_initial_directory_write(self, backend):
-        return '/'.join([backend.initial_directory_write, 
+        return '/'.join([backend.initial_directory_write,
                          self._name.replace('.', '_')])
 
     @api.multi
@@ -31,7 +29,7 @@ class CmisFolder(models.AbstractModel):
     def create_in_cmis(self, backend_id):
         backend = self.env['cmis.backend'].browse(backend_id)
         backend.ensure_one()
-        vals ={}
+        vals = {}
         for rec in self:
             if rec.cmis_objectid:
                 raise Warning(
