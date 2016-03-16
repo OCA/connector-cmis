@@ -13,6 +13,14 @@ class CmisFolder(models.AbstractModel):
     _name = 'cmis.folder'
     _inherit = 'cmis.object.ref'
 
+    cmis_folder_name = fields.Char(compute='get_names_for_cmis_folder')
+
+    @api.multi
+    def get_names_for_cmis_folder(self):
+        names = dict(self.name_get())
+        for rec in self:
+            rec.cmis_folder_name = names[rec.id]
+
     @api.model
     def get_initial_directory_write(self, backend):
         return '/'.join([backend.initial_directory_write,
@@ -22,7 +30,8 @@ class CmisFolder(models.AbstractModel):
     def _create_cmis_content(self, backend, parent_cmis_object):
         self.ensure_one()
         repo = backend.check_auth()
-        new_folder = repo.createFolder(parent_cmis_object, self.name)
+        new_folder = repo.createFolder(
+            parent_cmis_object, self.cmis_folder_name)
         return new_folder.getProperties()['cmis:objectId']
 
     @api.multi
