@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import api, fields, models
-from openerp.exceptions import Warning
 from openerp.tools.translate import _
 
 
@@ -12,46 +11,13 @@ class CmisFolder(models.AbstractModel):
     """
     _name = 'cmis.folder'
     _inherit = 'cmis.object.ref'
-
-    cmis_folder_name = fields.Char(compute='get_names_for_cmis_folder')
-
-    @api.multi
-    def get_names_for_cmis_folder(self):
-        names = dict(self.name_get())
-        for rec in self:
-            rec.cmis_folder_name = names[rec.id]
-
-    @api.model
-    def get_initial_directory_write(self, backend):
-        return '/'.join([backend.initial_directory_write,
-                         self._name.replace('.', '_')])
+    _cmis_object_type = 'cmis:folder'
 
     @api.multi
-    def _create_cmis_content(self, backend, parent_cmis_object):
+    def _create_cmis_object(self, backend, parent_cmis_object):
         self.ensure_one()
+        props = self._get_cmis_create_object_properties()
         repo = backend.check_auth()
         new_folder = repo.createFolder(
-            parent_cmis_object, self.cmis_folder_name)
+            parent_cmis_object, self.cmis_content_name, properties=props)
         return new_folder.getProperties()['cmis:objectId']
-
-    @api.multi
-    def create_in_cmis(self, backend_id):
-        backend = self.env['cmis.backend'].browse(backend_id)
-        backend.ensure_one()
-        vals = {}
-        for rec in self:
-            if rec.cmis_objectid:
-                raise Warning(
-                    _("Folder %s already exists in CMIS (backend: %s)" % (
-                      rec.name, rec.backend_id.name)))
-            parent_cmis_object = backend.get_folder_by_path(
-                self.get_initial_directory_write(backend),
-                create_if_not_found=True)
-            cmis_objectid = rec._create_cmis_content(
-                backend, parent_cmis_object)
-            rec.write({
-                'cmis_objectid': cmis_objectid,
-                'backend_id': backend.id
-                })
-            vals[rec.id] = cmis_objectid
-        return vals
