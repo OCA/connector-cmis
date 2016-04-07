@@ -19,6 +19,7 @@
     'data': [
         'views/cmis_backend_view.xml',
         'views/cmis_menu.xml',
+        'security/ir.model.access.csv',
     ],
     'installable': True,
     'auto_install': False,
