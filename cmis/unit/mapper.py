@@ -10,8 +10,8 @@ from datetime import datetime
 class CmisImportMapper(ImportMapper):
 
     @mapping
-    def backend_id(self, record):
-        return {'backend_id': self.backend_record.id}
+    def cmis_backend_id(self, record):
+        return {'cmis_backend_id': self.backend_record.id}
 
     @mapping
     def updated_on(self, record):

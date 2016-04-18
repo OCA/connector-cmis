@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: cmis
-#: view:cmis.backend:0 field:cmis.binding,backend_id:0
+#: view:cmis.backend:0 field:cmis.binding,cmis_backend_id:0
 #: model:ir.model,name:cmis.model_cmis_backend
 msgid "CMIS Backend"
 msgstr "Backend CMIS"
