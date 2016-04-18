@@ -55,10 +55,10 @@ def create_doc_in_edm(session, model_name, res,
                 'id_dms': someDoc.getObjectId(),
                 'datas': None})
             ir_attach_doc_backend_obj.create({
-                    'attachment_id': res,
-                    'cmis_backend_id': backend.id,
-                    'object_doc_id': ir_attach.id_dms,
-                })
+                'attachment_id': res,
+                'cmis_backend_id': backend.id,
+                'object_doc_id': ir_attach.id_dms,
+            })
             _logger.warn('Attachment saved in DMS %s', backend.name)
         except:
             _logger.warn('Cannot save the attachment in DMS %s', backend.name)

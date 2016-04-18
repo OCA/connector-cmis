@@ -21,7 +21,6 @@ class IrAttachmentDocBackend(models.Model):
         ondelete='cascade',
         help="Backend",
         oldname='backend_id'
-        
     )
     object_doc_id = fields.Char(
         "Id of document backend",

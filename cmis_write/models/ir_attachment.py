@@ -47,7 +47,7 @@ class IrAttachment(models.Model):
         session = ConnectorSession.from_env(self.env)
         # if bool_testdoc in context, we don't need to create
         # the doc in the DMS
-        # if the attachment is not linked to a model, we dont create the doc 
+        # if the attachment is not linked to a model, we dont create the doc
         # in DMSt
         if res.must_be_stored_in_cmis():
             metadata = {}
@@ -73,7 +73,7 @@ class IrAttachment(models.Model):
         query = " SELECT * FROM  cmis:document \
                 WHERE cmis:objectId ='" + self.id_dms + "'"
         results = repo.query(query)
-         # workaround  bug in cmislib 0.5.1
+        # workaround  bug in cmislib 0.5.1
         # https://issues.apache.org/jira/browse/CMIS-701
         result = results[0]
         result.reload()
