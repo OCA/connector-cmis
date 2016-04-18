@@ -20,14 +20,14 @@ class CmisObjectRef(models.AbstractModel):
         comodel_name="cmis.backend",
         string="Backend",
         oldname='backend_id',
-        copy=False) 
-    
+        copy=False)
+
     cmis_content_name = fields.Char(compute='get_names_for_cmis_content')
-    
+
     _sql_constraints = [
-            ('cmis_object_ref_uniq',
-             'unique (objectid, cmis_backend_id)',
-             "Cmis object Id must be uniquein a given backend !"),
+        ('cmis_object_ref_uniq',
+         'unique (objectid, cmis_backend_id)',
+         "Cmis object Id must be uniquein a given backend !"),
     ]
 
     @api.multi

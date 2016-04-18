@@ -4,13 +4,13 @@
 import logging
 import httplib2
 import functools
+from . import (
+    backend,
+    models,
+)
+
 logger = logging.getLogger(__name__)
 
 logger.warning('Disable SSL Certificate Validation by python code')
 httplib2.Http = functools.partial(
     httplib2.Http, disable_ssl_certificate_validation=True)
-
-from . import (
-    backend,
-    models,
-)

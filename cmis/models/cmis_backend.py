@@ -99,7 +99,7 @@ class CmisBackend(models.Model):
                            cmis_parent_objectid=None):
         self.ensure_one()
         repo = self.check_auth()
-        if  cmis_parent_objectid:
+        if cmis_parent_objectid:
             path = repo.getObject(
                 cmis_parent_objectid).getPaths()[0] + '/' + path
         traversed = []
@@ -110,7 +110,7 @@ class CmisBackend(models.Model):
                 new_root = repo.getObjectByPath('/'.join(traversed))
             except ObjectNotFoundException:
                 if create_if_not_found:
-                    new_root = repo.createFolder(root, part)
+                    new_root = repo.createFolder(new_root, part)
                 else:
                     return False
             root = new_root
