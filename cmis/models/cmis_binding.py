@@ -10,9 +10,9 @@ class CmisBinding(models.AbstractModel):
     _inherit = 'external.binding'
     _description = 'DMS Binding (Abstract)'
 
-    backend_id = fields.Many2one(
+    cmis_backend_id = fields.Many2one(
         'cmis.backend', 'CMIS Backend', required=True,
-        ondelete='restrict')
+        ondelete='restrict', oldname='backend_id')
     dms_id = fields.Integer('ID in Dms', required=True)
     sync_date = fields.Datetime(
         'Last Synchronization Date', required=True)

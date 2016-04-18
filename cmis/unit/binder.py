@@ -11,4 +11,4 @@ class CmisModelBinder(Binder):
 
     _model_name = []
     _external_field = 'dms_id'
-    _backend_field = 'backend_id'
+    _backend_field = 'cmis_backend_id'
