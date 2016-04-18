@@ -12,11 +12,11 @@
           <group col="2" colspan="4">
             <field name="attachment_document_ids" nolabel="1" readonly="1">
               <tree string="AttachmentDocBackendTree">
-                <field name="backend_id"/>
+                <field name="cmis_backend_id"/>
                 <field name="object_doc_id"/>
               </tree>
               <form string="AttachmentDocBackendForm">
-                <field name="backend_id"/>
+                <field name="cmis_backend_id"/>
                 <field name="object_doc_id"/>
               </form>
             </field>
