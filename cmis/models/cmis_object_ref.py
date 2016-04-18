@@ -16,16 +16,17 @@ class CmisObjectRef(models.AbstractModel):
 
     cmis_objectid = fields.Char(
         string="CMIS ObjectId", requried=True, index=True, copy=False)
-    backend_id = fields.Many2one(
+    cmis_backend_id = fields.Many2one(
         comodel_name="cmis.backend",
         string="Backend",
+        oldname='backend_id',
         copy=False) 
     
     cmis_content_name = fields.Char(compute='get_names_for_cmis_content')
     
     _sql_constraints = [
             ('cmis_object_ref_uniq',
-             'unique (objectid, backend_id)',
+             'unique (objectid, cmis_backend_id)',
              "Cmis object Id must be uniquein a given backend !"),
     ]
 
@@ -55,15 +56,15 @@ class CmisObjectRef(models.AbstractModel):
         raise NotImplementedError('Must be implemented by specific types')
 
     @api.multi
-    def create_in_cmis(self, backend_id):
-        backend = self.env['cmis.backend'].browse(backend_id)
+    def create_in_cmis(self, cmis_backend_id):
+        backend = self.env['cmis.backend'].browse(cmis_backend_id)
         backend.ensure_one()
         vals = {}
         for rec in self:
             if rec.cmis_objectid:
                 raise UserError(
                     _("Object %s already exists in CMIS (backend: %s)" % (
-                      rec.name, rec.backend_id.name)))
+                      rec.name, rec.cmis_backend_id.name)))
             parent_cmis_object = backend.get_folder_by_path(
                 self.get_initial_directory_write(backend),
                 create_if_not_found=True)
@@ -71,7 +72,7 @@ class CmisObjectRef(models.AbstractModel):
                 backend, parent_cmis_object)
             rec.write({
                 'cmis_objectid': cmis_objectid,
-                'backend_id': backend.id
+                'cmis_backend_id': backend.id
                 })
             vals[rec.id] = cmis_objectid
         return vals
