@@ -56,7 +56,7 @@ def create_doc_in_edm(session, model_name, res,
                 'datas': None})
             ir_attach_doc_backend_obj.create({
                     'attachment_id': res,
-                    'backend_id': backend.id,
+                    'cmis_backend_id': backend.id,
                     'object_doc_id': ir_attach.id_dms,
                 })
             _logger.warn('Attachment saved in DMS %s', backend.name)

@@ -15,11 +15,13 @@ class IrAttachmentDocBackend(models.Model):
         ondelete='cascade',
         help="Document"
     )
-    backend_id = fields.Many2one(
+    cmis_backend_id = fields.Many2one(
         'cmis.backend',
         'Backend',
         ondelete='cascade',
-        help="Backend"
+        help="Backend",
+        oldname='backend_id'
+        
     )
     object_doc_id = fields.Char(
         "Id of document backend",
