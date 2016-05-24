@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
@@ -22,7 +22,7 @@
 
 {
     'name': 'CMIS Write',
-    'version': '0.1',
+    'version': '7.0.1.0.0',
     'category': 'Knowledge Management',
     'summary': 'Create Document in DMS from Odoo/OpenERP',
     'description': """
@@ -65,7 +65,7 @@ Contributors
 ------------
 * El Hadji Dem (elhadji.dem@savoirfairelinux.com)
 """,
-    'author': 'Savoir-faire Linux',
+    'author': 'Savoir-faire Linux, Odoo Community Association (OCA)',
     'website': 'www.savoirfairelinux.com',
     'license': 'AGPL-3',
     'depends': [
