@@ -15,7 +15,7 @@ var _t = instance.web._t,
                 item.callback.apply(self, [item]);
             } else if (item.action) {
                 self.on_item_action_clicked(item);
-            } else if item.attachment_document_ids.length !=0 {
+            } else if (item.attachment_document_ids.length !== 0) {
                 if (!item.id_dms) {
                 alert(_t("Document is not available in DMS.Please try again !!!"));
                 } else if (!item.datas) {
