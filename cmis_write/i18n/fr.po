@@ -203,7 +203,7 @@ msgid "File"
 msgstr "Fichier"
 
 #. module: cmis_write
-#: field:ir.attachment.doc.backend,backend_id:0
-#: help:ir.attachment.doc.backend,backend_id:0
+#: field:ir.attachment.doc.backend,cmis_backend_id:0
+#: help:ir.attachment.doc.backend,cmis_backend_id:0
 msgid "Backend"
 msgstr "Backend"

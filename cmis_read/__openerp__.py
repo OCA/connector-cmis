@@ -22,7 +22,7 @@
 
 {
     'name': 'CMIS Read',
-    'version': '7.0.1.0.0',
+    'version': '9.0.1.0.0',
     'category': 'Knowledge Management',
     'summary': 'Store Document File from a Remote CMIS Server',
     'description': """
@@ -80,6 +80,6 @@ Contributors
     'test': [],
     'demo': [
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
 }
