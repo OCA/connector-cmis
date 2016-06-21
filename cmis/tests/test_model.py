@@ -25,7 +25,6 @@ class test_model(TransactionCase):
             'location': "http://localhost:8081/alfresco/s/cmis",
             'username': 'admin',
             'password': 'admin',
-            'initial_directory_read': '/',
             'initial_directory_write': '/',
         }
 

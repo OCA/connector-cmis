@@ -28,14 +28,8 @@ class CmisBackend(models.Model):
         required=True)
     password = fields.Char(
         required=True)
-    initial_directory_read = fields.Char(
-        'Initial directory for reading', required=True, default='/')
     initial_directory_write = fields.Char(
         'Initial directory for writing', required=True, default='/')
-    browsing_ok = fields.Boolean(
-        'Allow browsing this backend')
-    storing_ok = fields.Boolean(
-        'Allow storing in this backend')
 
     @api.multi
     def _get_base_adapter(self):
@@ -83,19 +77,6 @@ class CmisBackend(models.Model):
                         ("Please check your access right."))
             self.get_error_for_path(path_write_objectid != False,
                                     folder_path_write)
-
-    @api.multi
-    def check_directory_of_read(self):
-        """Check access right to read from the path"""
-        for this in self:
-            repo = this.check_auth()
-            folder_path_read = this.initial_directory_read
-            path_read_objectid = self.get_folder_by_path(
-                folder_path_read,
-                create_if_not_found=False,
-                cmis_parent_objectid=None)
-            self.get_error_for_path(path_read_objectid != False,
-                                    folder_path_read)
 
     @api.multi
     def get_folder_by_path(self, path, create_if_not_found=True,
