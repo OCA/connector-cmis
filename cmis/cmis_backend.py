@@ -156,8 +156,8 @@ class cmis_backend(orm.Model):
         """Function to check if the path is correct"""
         for one_rs in rs:
             # Print name of files
-            props = one_rs.getProperties()
-            if props['cmis:path'] == folder_path:
+            cmis_path = one_rs.getProperties()['cmis:path']
+            if folder_path == cmis_path or folder_path in cmis_path:
                 return True
         return False
 

@@ -22,7 +22,7 @@
 
 {
     'name': 'CMIS',
-    'version': '7.0.1.1.0',
+    'version': '7.0.1.1.1',
     'category': 'Connector',
     'summary': 'Connect OpenERP with a CMIS server',
     'description': """
@@ -42,6 +42,7 @@ Contributors
 ------------
 * El Hadji Dem (elhadji.dem@savoirfairelinux.com)
 * Maxime Chambreuil (maxime.chambreuil@savoirfairelinux.com)
+* Laurent Mignon (laurent.mignon@acsone.eu)
 """,
     'author': "Savoir-faire Linux, Odoo Community Association (OCA)",
     'website': 'www.savoirfairelinux.com',
