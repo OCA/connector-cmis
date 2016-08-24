@@ -26,7 +26,7 @@ class CmisObjectRef(models.AbstractModel):
 
     _sql_constraints = [
         ('cmis_object_ref_uniq',
-         'unique (objectid, cmis_backend_id)',
+         'unique (cmis_objectid, cmis_backend_id)',
          "Cmis object Id must be uniquein a given backend !"),
     ]
 
