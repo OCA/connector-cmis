@@ -13,6 +13,9 @@ addons:
     packages:
       - expect-dev  # provides unbuffer utility
       - python-lxml # because pip installation is slow
+      - python-simplejson
+      - python-serial
+      - python-yaml
 
 env:
   global:
@@ -33,7 +36,7 @@ install:
   - git clone https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
-  - pip install cmislib
+  - pip install git+https://github.com/lmignon/python-cmislib.git@6.0.dev#egg=cmislib
 
 script:
   - travis_run_tests
