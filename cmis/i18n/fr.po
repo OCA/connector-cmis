@@ -19,17 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: cmis
-#: view:cmis.backend:0 field:cmis.binding,backend_id:0
+#: view:cmis.backend:0 field:cmis.binding,cmis_backend_id:0
 #: model:ir.model,name:cmis.model_cmis_backend
 msgid "CMIS Backend"
 msgstr "Backend CMIS"
 
 #. module: cmis
-#: code:addons/cmis/unit/backend_adapter.py:55
-#: code:addons/cmis/unit/backend_adapter.py:58
+#: code:addons/cmis/unit/backend_adapter.py:34
 #, python-format
-msgid "Check your CMIS account configuration."
-msgstr "Vérifier la configuration de compte CMIS"
+msgid "CMIS backend not found.\n"
+"Check your CMIS account configuration."
+msgstr "Backend CMIS non trouvé.\n"
+"Vérifier la configuration de compte CMIS."
 
 #. module: cmis
 #: code:addons/cmis/unit/backend_adapter.py:54
@@ -88,25 +89,23 @@ msgid "Error path for : %s"
 msgstr "Erreur de chemin : %s"
 
 #. module: cmis
-#: field:cmis.backend,storing_ok:0
-msgid "Allow storing in this backend"
-msgstr "Permettre le stockage dans ce backend"
-
-#. module: cmis
 #: code:addons/cmis/cmis_backend.py:168
 #, python-format
 msgid "Path is correct for : %s"
 msgstr "Le chemin est correct pour : %s"
 
 #. module: cmis
+#: code:addons/cmis/unit/backend_adapter.py:39
+#, python-format
+msgid "Permission denied.\n"
+"Check your CMIS account configuration."
+msgstr "Permission refusée.\n"
+"Vérifier la configuration de compte CMIS."
+
+#. module: cmis
 #: view:cmis.backend:0
 msgid "Cmis Configuration"
 msgstr "Configuration CMIS"
-
-#. module: cmis
-#: field:cmis.backend,initial_directory_read:0
-msgid "Initial directory for reading"
-msgstr "Répertoire initial pour la lecture"
 
 #. module: cmis
 #: field:cmis.binding,updated_on:0
@@ -151,11 +150,6 @@ msgstr "Version"
 #: field:cmis.backend,initial_directory_write:0
 msgid "Initial directory for writing"
 msgstr "Répertoire initial pour l'écriture"
-
-#. module: cmis
-#: field:cmis.backend,browsing_ok:0
-msgid "Allow browsing this backend"
-msgstr "Permettre la navigation dans ce backend"
 
 #. module: cmis
 #: field:cmis.binding,dms_id:0
