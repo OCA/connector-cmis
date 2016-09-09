@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<openerp>
-  <data>
+<odoo>
 
-    <menuitem id="menu_cmis_root"
-              parent="connector.menu_connector_root"
-              name="Cmis"
-              sequence="10"
-              groups="connector.group_connector_manager"/>
+    <record model="ir.ui.menu" id="cmis_root_menu">
+        <field name="name">Cmis</field>
+        <field name="parent_id" ref="base.menu_administration" />
+        <field name="sequence" eval="16" />
+    </record>
 
-    <menuitem id="menu_cmis_backend"
-              name="Backends"
-              parent="menu_cmis_root"
-              action="action_cmis_backend"/>
-
-  </data>
-</openerp>
+</odoo>
