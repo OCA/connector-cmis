@@ -45,7 +45,7 @@ class CmisBackend(models.Model):
     @tools.cache()
     def get_cmis_client(self):
         """
-        Get an initialized CmisClient for the using the CMISBrowserBinding
+        Get an initialized CmisClient using the CMISBrowserBinding
         """
         self.ensure_one()
         return CmisClient(
@@ -60,8 +60,8 @@ class CmisBackend(models.Model):
         # simple case: one backend
         domain = [(1, '=', 1)]
         if name:
-            # multi backend case
-            domain=[('name', '=', name)]
+            # multi backends case
+            domain = [('name', '=', name)]
         backend = self.search(domain)
         backend.ensure_one()
         return backend
@@ -89,7 +89,7 @@ class CmisBackend(models.Model):
 
     @api.multi
     def get_cmis_repository(self):
-        """ Check the authentication with DMS """
+        """ Return the default repository in the CMIS container """
         self.ensure_one()
         client = self.get_cmis_client()
         return client.defaultRepository
