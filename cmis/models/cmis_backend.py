@@ -48,6 +48,11 @@ class CmisBackend(models.Model):
         return super(CmisBackend, self).write(vals)
 
     @api.multi
+    def unlink(self):
+        self._clear_caches()
+        return super(CmisBackend, self).unlink()
+
+    @api.multi
     @tools.cache()
     def get_cmis_client(self):
         """
