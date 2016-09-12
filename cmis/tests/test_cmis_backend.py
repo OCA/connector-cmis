@@ -36,3 +36,8 @@ class TestCmisBackend(common.SavepointCase):
         backend.write({'name': 'new name'})
         backend = self.cmis_backend.get_by_name(name='new name')
         self.assertEquals(backend.name, 'new name')
+        backend.unlink()
+        backend = self.cmis_backend.get_by_name(
+            name='new name',
+            raise_if_not_found=False)
+        self.assertFalse(backend)
