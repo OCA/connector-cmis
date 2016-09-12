@@ -32,6 +32,12 @@ class CmisBackend(models.Model):
     initial_directory_write = fields.Char(
         'Initial directory for writing', required=True, default='/')
 
+    _sql_constraints = [
+        ('name_uniq',
+         'unique(name)',
+         _('CMIS Backend name must be unique!')),
+    ]
+
     def _clear_caches(self):
         self.get_cmis_client.clear_cache(self)
         self.get_by_name.clear_cache(self)
@@ -56,14 +62,20 @@ class CmisBackend(models.Model):
 
     @api.model
     @tools.cache('name')
-    def get_by_name(self, name):
+    def get_by_name(self, name, raise_if_not_found=True):
         # simple case: one backend
         domain = [(1, '=', 1)]
         if name:
             # multi backends case
             domain = [('name', '=', name)]
         backend = self.search(domain)
-        backend.ensure_one()
+        if len(backend) != 1 and raise_if_not_found:
+            if name:
+                msg = _("Expected 1 backend named %s, %s found" %
+                        (name, len(backend)))
+            else:
+                msg = _('No backend found')
+            raise ValueError(msg)
         return backend
 
     @api.model
