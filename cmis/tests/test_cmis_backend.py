@@ -3,6 +3,7 @@
 # Copyright 2016 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
+from psycopg2._psycopg import IntegrityError
 from openerp.tests import common
 
 
@@ -21,23 +22,6 @@ class TestCmisBackend(common.SavepointCase):
         self.backend_instance = self.cmis_backend.create(
             self.vals)
 
-    def test_get_by_name(self):
-        backend = self.cmis_backend.get_by_name(name=self.vals['name'])
-        self.assertEquals(self.backend_instance, backend)
-        with self.assertRaises(ValueError):
-            self.cmis_backend.get_by_name('error')
-        backend = self.cmis_backend.get_by_name(
-            'error', raise_if_not_found=False)
-        self.assertFalse(backend)
-
-    def test_clear_caches(self):
-        backend = self.cmis_backend.get_by_name(name=self.vals['name'])
-        self.assertEquals(self.backend_instance, backend)
-        backend.write({'name': 'new name'})
-        backend = self.cmis_backend.get_by_name(name='new name')
-        self.assertEquals(backend.name, 'new name')
-        backend.unlink()
-        backend = self.cmis_backend.get_by_name(
-            name='new name',
-            raise_if_not_found=False)
-        self.assertFalse(backend)
+    def test_unique_name(self):
+        with self.assertRaises(IntegrityError):
+            self.cmis_backend.create(self.vals)
