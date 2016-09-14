@@ -9,7 +9,7 @@ from cmislib.model import CmisClient
 from cmislib.browser.binding import BrowserBinding
 from cmislib.exceptions import ObjectNotFoundException
 
-from openerp import api, fields, models, tools
+from openerp import api, fields, models
 from openerp.exceptions import UserError
 from openerp.tools.translate import _
 from ..exceptions import CMISError
@@ -38,22 +38,7 @@ class CmisBackend(models.Model):
          _('CMIS Backend name must be unique!')),
     ]
 
-    def _clear_caches(self):
-        self.get_cmis_client.clear_cache(self)
-        self.get_by_name.clear_cache(self)
-
     @api.multi
-    def write(self, vals):
-        self._clear_caches()
-        return super(CmisBackend, self).write(vals)
-
-    @api.multi
-    def unlink(self):
-        self._clear_caches()
-        return super(CmisBackend, self).unlink()
-
-    @api.multi
-    @tools.cache()
     def get_cmis_client(self):
         """
         Get an initialized CmisClient using the CMISBrowserBinding
@@ -64,45 +49,6 @@ class CmisBackend(models.Model):
             self.username,
             self.password,
             binding=BrowserBinding())
-
-    @api.model
-    @tools.cache('name')
-    def get_by_name(self, name, raise_if_not_found=True):
-        # simple case: one backend
-        domain = [(1, '=', 1)]
-        if name:
-            # multi backends case
-            domain = [('name', '=', name)]
-        backend = self.search(domain)
-        if len(backend) != 1 and raise_if_not_found:
-            if name:
-                msg = _("Expected 1 backend named %s, %s found" %
-                        (name, len(backend)))
-            else:
-                msg = _('No backend found')
-            raise ValueError(msg)
-        return backend
-
-    @api.model
-    def _get_web_description(self, record):
-        """ Return the desciption of backend record to be included into the
-        field description of cmis fields that reference the backend.
-        """
-        return {
-            'id': record.id,
-            'name': record.name,
-            'location': record.location
-        }
-
-    @api.multi
-    def get_web_description(self):
-        """ Return informations to be included into the field description of
-        cmis fields that reference the backend.
-        """
-        ret = {}
-        for this in self:
-            ret[this.id] = self._get_web_description(this)
-        return ret
 
     @api.multi
     def get_cmis_repository(self):
