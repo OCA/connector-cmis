@@ -1,0 +1,194 @@
+# Translation of OpenERP Server.
+# This file contains the translation of the following modules:
+# * cmis
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: connector-cmis (7.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-08-15 18:53+0000\n"
+"PO-Revision-Date: 2015-11-14 17:11+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: Slovenian (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/sl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+
+#. module: cmis
+#: view:cmis.backend:0 field:cmis.binding,backend_id:0
+#: model:ir.model,name:cmis.model_cmis_backend
+msgid "CMIS Backend"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/unit/backend_adapter.py:55
+#: code:addons/cmis/unit/backend_adapter.py:58
+#, python-format
+msgid "Check your CMIS account configuration."
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/unit/backend_adapter.py:54
+#: code:addons/cmis/unit/backend_adapter.py:57
+#: code:addons/cmis/unit/backend_adapter.py:60
+#, python-format
+msgid "CMIS connection Error!"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.binding,sync_date:0
+msgid "Last Synchronization Date"
+msgstr ""
+
+#. module: cmis
+#: model:ir.ui.menu,name:cmis.menu_cmis_backend
+msgid "Backends"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,location:0
+msgid "Location"
+msgstr ""
+
+#. module: cmis
+#: view:cmis.backend:0
+msgid "e.g. http://localhost:8081/alfresco/s/cmis"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/unit/backend_adapter.py:61
+#, python-format
+msgid "SERVER is down."
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,name:0
+msgid "Name"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,username:0
+msgid "Username"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/unit/backend_adapter.py:42
+#, python-format
+msgid "Something very wrong happened. _auth() called without any ids."
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/cmis_backend.py:171
+#, python-format
+msgid "Error path for : %s"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,storing_ok:0
+msgid "Allow storing in this backend"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/cmis_backend.py:168
+#, python-format
+msgid "Path is correct for : %s"
+msgstr ""
+
+#. module: cmis
+#: view:cmis.backend:0
+msgid "Cmis Configuration"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,initial_directory_read:0
+msgid "Initial directory for reading"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.binding,updated_on:0
+msgid "Last Update in Dms"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/cmis_backend.py:132
+#, python-format
+msgid ""
+"The test file already exists in the DMS. Please remove it and try again."
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,password:0
+msgid "Password"
+msgstr "Geslo"
+
+#. module: cmis
+#: code:addons/cmis/cmis_backend.py:167
+#, python-format
+msgid "Cmis  Message"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/cmis_backend.py:131 code:addons/cmis/cmis_backend.py:170
+#, python-format
+msgid "Cmis  Error!"
+msgstr ""
+
+#. module: cmis
+#: view:cmis.backend:0
+msgid "Directory Configuration"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,version:0
+msgid "Version"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,initial_directory_write:0
+msgid "Initial directory for writing"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.backend,browsing_ok:0
+msgid "Allow browsing this backend"
+msgstr ""
+
+#. module: cmis
+#: field:cmis.binding,dms_id:0
+msgid "ID in Dms"
+msgstr ""
+
+#. module: cmis
+#: model:ir.actions.act_window,name:cmis.action_cmis_backend
+msgid "CMIS Backends"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/unit/backend_adapter.py:41
+#, python-format
+msgid "Internal Error"
+msgstr ""
+
+#. module: cmis
+#: code:addons/cmis/cmis_backend.py:136
+#, python-format
+msgid "Cmis access right Error!"
+msgstr ""
+
+#. module: cmis
+#: model:ir.model,name:cmis.model_cmis_binding
+msgid "DMS Binding (Abstract)"
+msgstr ""
+
+#. module: cmis
+#: view:cmis.backend:0
+msgid "Test Directory"
+msgstr ""
+
+#. module: cmis
+#: model:ir.ui.menu,name:cmis.menu_cmis_root
+msgid "Cmis"
+msgstr ""
