@@ -4,7 +4,7 @@
 
 {
     'name': 'CMIS',
-    'version': '9.0.1.0.0',
+    'version': '10.0.1.0.0',
     'category': 'Connector',
     'summary': 'Connect OpenERP with a CMIS server',
     'author': "Savoir-faire Linux, "
