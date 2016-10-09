@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="cmis_backend_alfresco" model="cmis.backend">
+            <field name="name">alfresco</field>
+            <field name="username">admin</field>
+            <field name="password">admin</field>
+            <field name="location">http://localhost:8080/alfresco/api/-default-/public/cmis/versions/1.1/browser/</field>
+        </record>
+
+    </data>
+
+</odoo>
