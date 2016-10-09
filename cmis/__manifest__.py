@@ -20,5 +20,8 @@
         'views/cmis_menu.xml',
         'views/cmis_backend.xml',
     ],
+    'demo': [
+        'demo/cmis_backend_demo.xml',
+    ],
     'installable': True,
 }
