@@ -100,6 +100,8 @@ class CmisBackend(models.Model):
             path = repo.getObject(
                 cmis_parent_objectid).getPaths()[0] + '/' + path
         traversed = []
+        if not path.startswith('/'):
+            path = '/%s' % path
         try:
             return repo.getObjectByPath(path)
         except ObjectNotFoundException:
