@@ -55,7 +55,7 @@ msgstr ""
 #: field:ir.attachment.download,attachment_id:0
 #: help:ir.attachment.download,attachment_id:0
 msgid "Attachment"
-msgstr ""
+msgstr "Allegato"
 
 #. module: cmis_write
 #: field:ir.attachment.doc.backend,attachment_id:0
@@ -122,7 +122,7 @@ msgstr ""
 #. module: cmis_write
 #: field:metadata,name:0 help:metadata,name:0
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #. module: cmis_write
 #: view:ir.attachment:0
@@ -153,7 +153,7 @@ msgstr ""
 #. module: cmis_write
 #: field:metadata,model_id:0 help:metadata,model_id:0
 msgid "Model"
-msgstr ""
+msgstr "Modello"
 
 #. module: cmis_write
 #: field:metadata,model_ids:0 help:metadata,model_ids:0
@@ -179,7 +179,7 @@ msgstr ""
 #. module: cmis_write
 #: field:ir.attachment.download,name:0 help:ir.attachment.download,name:0
 msgid "Attachment Name"
-msgstr ""
+msgstr "Nome Allegato"
 
 #. module: cmis_write
 #: field:ir.attachment.download,datas:0

@@ -61,12 +61,12 @@ msgstr ""
 #: field:ir.attachment.doc.backend,attachment_id:0
 #: help:ir.attachment.doc.backend,attachment_id:0
 msgid "Document"
-msgstr ""
+msgstr "Документ"
 
 #. module: cmis_write
 #: field:ir.attachment.download,type:0 help:ir.attachment.download,type:0
 msgid "Type"
-msgstr ""
+msgstr "Вид"
 
 #. module: cmis_write
 #: model:ir.model,name:cmis_write.model_metadata

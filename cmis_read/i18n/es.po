@@ -37,7 +37,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms,name:0
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #. module: cmis_read
 #: field:ir.attachment.dms,selectable_ok:0
@@ -142,7 +142,7 @@ msgstr "Cancelar"
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "Apply"
-msgstr ""
+msgstr "Aplicar"
 
 #. module: cmis_read
 #: model:ir.model,name:cmis_read.model_ir_attachment_dms_wizard
@@ -152,7 +152,7 @@ msgstr ""
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #. module: cmis_read
 #. openerp-web

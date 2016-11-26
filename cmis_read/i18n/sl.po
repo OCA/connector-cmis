@@ -86,7 +86,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms,wizard_id:0
 msgid "Wizard"
-msgstr ""
+msgstr "Čarovnik"
 
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
@@ -120,7 +120,7 @@ msgstr "Napaka"
 #. module: cmis_read
 #: field:ir.attachment.dms,code:0
 msgid "Code"
-msgstr ""
+msgstr "Koda"
 
 #. module: cmis_read
 #: help:ir.attachment.dms,selectable_ok:0
@@ -137,7 +137,7 @@ msgstr ""
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "Cancel"
-msgstr ""
+msgstr "Preklic"
 
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
@@ -152,7 +152,7 @@ msgstr ""
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "or"
-msgstr ""
+msgstr "ali"
 
 #. module: cmis_read
 #. openerp-web

@@ -37,7 +37,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms,name:0
 msgid "Title"
-msgstr ""
+msgstr "Заглавие"
 
 #. module: cmis_read
 #: field:ir.attachment.dms,selectable_ok:0

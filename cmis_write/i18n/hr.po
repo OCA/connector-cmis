@@ -61,12 +61,12 @@ msgstr "Privitak"
 #: field:ir.attachment.doc.backend,attachment_id:0
 #: help:ir.attachment.doc.backend,attachment_id:0
 msgid "Document"
-msgstr ""
+msgstr "Dokument"
 
 #. module: cmis_write
 #: field:ir.attachment.download,type:0 help:ir.attachment.download,type:0
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #. module: cmis_write
 #: model:ir.model,name:cmis_write.model_metadata
@@ -122,7 +122,7 @@ msgstr ""
 #. module: cmis_write
 #: field:metadata,name:0 help:metadata,name:0
 msgid "Name"
-msgstr ""
+msgstr "Naziv"
 
 #. module: cmis_write
 #: view:ir.attachment:0
