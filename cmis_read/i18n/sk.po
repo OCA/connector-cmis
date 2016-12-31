@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: connector-cmis (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 07:34+0000\n"
+"POT-Creation-Date: 2016-12-24 00:48+0000\n"
 "PO-Revision-Date: 2016-05-25 07:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Slovak (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/sk/)\n"
@@ -137,7 +137,7 @@ msgstr ""
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušiť"
 
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
