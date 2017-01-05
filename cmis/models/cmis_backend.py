@@ -4,10 +4,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
-import cmislib.exceptions
-from cmislib.model import CmisClient
-from cmislib.browser.binding import BrowserBinding
-from cmislib.exceptions import ObjectNotFoundException
 
 from openerp import api, fields, models
 from openerp.exceptions import UserError
@@ -15,6 +11,14 @@ from openerp.tools.translate import _
 from ..exceptions import CMISError
 
 _logger = logging.getLogger(__name__)
+
+try:
+    import cmislib.exceptions
+    from cmislib.model import CmisClient
+    from cmislib.browser.binding import BrowserBinding
+    from cmislib.exceptions import ObjectNotFoundException
+except (ImportError, IOError) as err:
+    _logger.debug(err)
 
 
 class CmisBackend(models.Model):
