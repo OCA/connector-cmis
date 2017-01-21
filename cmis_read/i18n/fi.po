@@ -115,12 +115,12 @@ msgstr ""
 #: code:addons/cmis_read/wizard/ir_attachment_dms_wizard.py:97
 #, python-format
 msgid "Error"
-msgstr ""
+msgstr "Virhe"
 
 #. module: cmis_read
 #: field:ir.attachment.dms,code:0
 msgid "Code"
-msgstr ""
+msgstr "Koodi"
 
 #. module: cmis_read
 #: help:ir.attachment.dms,selectable_ok:0

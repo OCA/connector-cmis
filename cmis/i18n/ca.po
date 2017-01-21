@@ -10,11 +10,11 @@ msgstr ""
 "POT-Creation-Date: 2017-01-07 01:23+0000\n"
 "PO-Revision-Date: 2015-11-14 17:11+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: Italian (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/it/)\n"
+"Language-Team: Catalan (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
+"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: cmis
@@ -51,7 +51,7 @@ msgstr ""
 #. module: cmis
 #: field:cmis.backend,location:0
 msgid "Location"
-msgstr "Posizione"
+msgstr ""
 
 #. module: cmis
 #: view:cmis.backend:0
@@ -67,7 +67,7 @@ msgstr ""
 #. module: cmis
 #: field:cmis.backend,name:0
 msgid "Name"
-msgstr "Nome"
+msgstr "Nom"
 
 #. module: cmis
 #: field:cmis.backend,username:0
