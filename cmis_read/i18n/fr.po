@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: connector-cmis (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 07:34+0000\n"
+"POT-Creation-Date: 2017-01-21 01:36+0000\n"
 "PO-Revision-Date: 2016-05-25 07:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: French (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/fr/)\n"
@@ -97,7 +97,7 @@ msgstr ""
 #: help:ir.attachment.dms,code:0 help:ir.attachment.dms,name:0
 #: field:ir.attachment.dms.wizard,name:0 help:ir.attachment.dms.wizard,name:0
 msgid "File name"
-msgstr ""
+msgstr "Nom du fichier"
 
 #. module: cmis_read
 #: model:ir.model,name:cmis_read.model_ir_attachment_dms
