@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: connector-cmis (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-17 01:02+0000\n"
+"POT-Creation-Date: 2017-02-18 01:32+0000\n"
 "PO-Revision-Date: 2016-05-25 07:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/es/)\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: code:addons/cmis_read/wizard/ir_attachment_dms_wizard.py:104
 #, python-format
 msgid "Document Page"
-msgstr ""
+msgstr "Página del documento"
 
 #. module: cmis_read
 #: code:addons/cmis_read/wizard/ir_attachment_dms_wizard.py:98
@@ -69,7 +69,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms.wizard,attachment_ids:0
 msgid "unknown"
-msgstr ""
+msgstr "desconocido"
 
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
