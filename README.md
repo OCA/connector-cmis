@@ -14,6 +14,7 @@ addon | version | summary
 --- | --- | ---
 [cmis](cmis/) | 10.0.1.0.0 | Connect OpenERP with a CMIS server
 
+
 Unported addons
 ---------------
 addon | version | summary
