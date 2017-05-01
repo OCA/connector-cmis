@@ -30,7 +30,7 @@ msgstr ""
 #. module: cmis_write
 #: view:metadata:0
 msgid "Object"
-msgstr ""
+msgstr "Objecte "
 
 #. module: cmis_write
 #. openerp-web
@@ -158,7 +158,7 @@ msgstr ""
 #. module: cmis_write
 #: field:metadata,model_ids:0 help:metadata,model_ids:0
 msgid "Model List"
-msgstr ""
+msgstr "Llista de Models"
 
 #. module: cmis_write
 #: model:ir.model,name:cmis_write.model_ir_attachment_doc_backend

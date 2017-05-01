@@ -10,12 +10,12 @@ msgstr ""
 "POT-Creation-Date: 2017-03-18 01:17+0000\n"
 "PO-Revision-Date: 2016-05-25 07:11+0000\n"
 "Last-Translator: <>\n"
-"Language-Team: German (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/de/)\n"
+"Language-Team: Lithuanian (Lithuania) (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/lt_LT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: de\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: lt_LT\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. module: cmis_read
 #: code:addons/cmis_read/wizard/ir_attachment_dms_wizard.py:160
@@ -37,7 +37,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms,name:0
 msgid "Title"
-msgstr "Titel"
+msgstr ""
 
 #. module: cmis_read
 #: field:ir.attachment.dms,selectable_ok:0
@@ -59,7 +59,7 @@ msgstr ""
 #. module: cmis_read
 #: view:ir.attachment.dms:0
 msgid "Attachment"
-msgstr "Anhang"
+msgstr ""
 
 #. module: cmis_read
 #: help:ir.attachment.dms,file_id:0
@@ -69,7 +69,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms.wizard,attachment_ids:0
 msgid "unknown"
-msgstr "unbekannt"
+msgstr ""
 
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
@@ -86,7 +86,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms,wizard_id:0
 msgid "Wizard"
-msgstr "Assistent"
+msgstr ""
 
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
@@ -115,12 +115,12 @@ msgstr ""
 #: code:addons/cmis_read/wizard/ir_attachment_dms_wizard.py:97
 #, python-format
 msgid "Error"
-msgstr "Fehler"
+msgstr ""
 
 #. module: cmis_read
 #: field:ir.attachment.dms,code:0
 msgid "Code"
-msgstr "Kennung"
+msgstr ""
 
 #. module: cmis_read
 #: help:ir.attachment.dms,selectable_ok:0
@@ -137,12 +137,12 @@ msgstr ""
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "Cancel"
-msgstr "Abbrechen"
+msgstr "Atšaukti"
 
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "Apply"
-msgstr "Anwenden"
+msgstr ""
 
 #. module: cmis_read
 #: model:ir.model,name:cmis_read.model_ir_attachment_dms_wizard
@@ -152,7 +152,7 @@ msgstr ""
 #. module: cmis_read
 #: view:ir.attachment.dms.wizard:0
 msgid "or"
-msgstr "oder"
+msgstr ""
 
 #. module: cmis_read
 #. openerp-web

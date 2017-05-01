@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: connector-cmis (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 01:30+0000\n"
+"POT-Creation-Date: 2017-03-18 01:17+0000\n"
 "PO-Revision-Date: 2016-05-25 07:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/zh_CN/)\n"
@@ -48,7 +48,7 @@ msgstr ""
 #: code:addons/cmis_read/wizard/ir_attachment_dms_wizard.py:104
 #, python-format
 msgid "Document Page"
-msgstr ""
+msgstr "文档页面"
 
 #. module: cmis_read
 #: code:addons/cmis_read/wizard/ir_attachment_dms_wizard.py:98
