@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: connector-cmis (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-18 01:32+0000\n"
+"POT-Creation-Date: 2017-06-10 03:05+0000\n"
 "PO-Revision-Date: 2016-05-25 07:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Spanish (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/es/)\n"
@@ -184,7 +184,7 @@ msgstr "Nombre del adjunto"
 #. module: cmis_write
 #: field:ir.attachment.download,datas:0
 msgid "File"
-msgstr ""
+msgstr "Fichero"
 
 #. module: cmis_write
 #: field:ir.attachment.doc.backend,backend_id:0
