@@ -4,9 +4,9 @@
 
 {
     'name': 'CMIS',
-    'version': '10.0.1.0.0',
+    'version': '10.0.1.1.0',
     'category': 'Connector',
-    'summary': 'Connect OpenERP with a CMIS server',
+    'summary': 'Connect Odoo with a CMIS server',
     'author': "Savoir-faire Linux, "
               "ACSONE SA/NV, "
               "Odoo Community Association (OCA)",
