@@ -46,8 +46,8 @@
         <field name="name">cmis.backend.tree (in cmis)</field>
         <field name="model">cmis.backend</field>
         <field name="arch" type="xml">
-            <tree string="Claim Categories">
-                <field name="name" widget="handle" />
+            <tree>
+                <field name="name" widget="handle"/>
                 <field name="location"/>
             </tree>
         </field>
