@@ -5,9 +5,9 @@
 
 import logging
 
-from openerp import api, fields, models
-from openerp.exceptions import UserError
-from openerp.tools.translate import _
+from odoo import api, fields, models
+from odoo.exceptions import UserError
+from odoo.tools.translate import _
 from ..exceptions import CMISError
 
 _logger = logging.getLogger(__name__)
