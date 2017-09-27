@@ -17,7 +17,6 @@
     },
     'data': [
         'security/cmis_backend.xml',
-        'views/cmis_menu.xml',
         'views/cmis_backend.xml',
     ],
     'demo': [
