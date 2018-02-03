@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: connector-cmis (7.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-09-17 07:34+0000\n"
+"POT-Creation-Date: 2017-11-25 02:44+0000\n"
 "PO-Revision-Date: 2016-05-25 07:11+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: Catalan (Spain) (http://www.transifex.com/oca/OCA-connector-cmis-7-0/language/ca_ES/)\n"
@@ -120,7 +120,7 @@ msgstr ""
 #. module: cmis_read
 #: field:ir.attachment.dms,code:0
 msgid "Code"
-msgstr ""
+msgstr "Codi"
 
 #. module: cmis_read
 #: help:ir.attachment.dms,selectable_ok:0
