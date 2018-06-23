@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * cmis
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2017
 msgid ""
@@ -12,16 +12,21 @@ msgstr ""
 "PO-Revision-Date: 2017-02-08 01:35+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2017\n"
 "Language-Team: French (https://www.transifex.com/oca/teams/23907/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. module: cmis
 #: model:ir.ui.menu,name:cmis.cmis_backend_menu
 msgid "Backends"
 msgstr "Backends"
+
+#. module: cmis
+#: model:ir.ui.menu,name:cmis.cmis_root_menu
+msgid "CMIS"
+msgstr ""
 
 #. module: cmis
 #: model:ir.model,name:cmis.model_cmis_backend
@@ -35,16 +40,6 @@ msgstr "Backend CMIS"
 #, python-format
 msgid "CMIS Backend name must be unique!"
 msgstr "Le nom du Backend CMIS doit être unique!"
-
-#. module: cmis
-#: model:ir.ui.view,arch_db:cmis.cmis_backend_tree_view
-msgid "Claim Categories"
-msgstr ""
-
-#. module: cmis
-#: model:ir.ui.menu,name:cmis.cmis_root_menu
-msgid "Cmis"
-msgstr "Cmis"
 
 #. module: cmis
 #: model:ir.actions.act_window,name:cmis.cmis_backend_act_window
@@ -151,3 +146,6 @@ msgstr "Nom d'utilisateur"
 #: model:ir.ui.view,arch_db:cmis.cmis_backend_form_view
 msgid "e.g. http://localhost:8081/alfresco/s/cmis"
 msgstr "par ex : http://localhost:8081/alfresco/s/cmis"
+
+#~ msgid "Cmis"
+#~ msgstr "Cmis"
