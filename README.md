@@ -5,10 +5,13 @@ Connector-cmis
 ==============
 
 [//]: # (addons)
+
 Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[cmis](cmis/) | 1.0 | Cmis Connector
+[cmis](cmis/) | 7.0.1.1.0 | Connect OpenERP with a CMIS server
+[cmis_read](cmis_read/) | 7.0.1.0.0 | Store Document File from a Remote CMIS Server
+[cmis_write](cmis_write/) | 7.0.1.0.0 | Create Document in DMS from Odoo/OpenERP
 
 [//]: # (end addons)
