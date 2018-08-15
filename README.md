@@ -13,6 +13,7 @@ Available addons
 addon | version | summary
 --- | --- | ---
 [cmis](cmis/) | 10.0.1.1.0 | Connect Odoo with a CMIS server
+[cmis_stock_production_lot](cmis_stock_production_lot/) | 10.0.1.0.0 | Upload CMIS documents on the Lot/SN Number
 
 
 Unported addons
