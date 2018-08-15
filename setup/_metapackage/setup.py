@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo10-addon-cmis',
+        'odoo10-addon-cmis_stock_production_lot',
     ],
     classifiers=[
         'Programming Language :: Python',
