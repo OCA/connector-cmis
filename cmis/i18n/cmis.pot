@@ -68,11 +68,6 @@ msgid "Display Name"
 msgstr ""
 
 #. module: cmis
-#: model:res.groups,name:cmis.cmis_document_manager
-msgid "Document Manager"
-msgstr ""
-
-#. module: cmis
 #: code:addons/cmis/models/cmis_backend.py:95
 #, python-format
 msgid "Error path for : %s"
