@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
 # © 2014-2015 Savoir-faire Linux (<http://www.savoirfairelinux.com>).
 # Copyright 2016 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from psycopg2._psycopg import IntegrityError
-from openerp.tests import common
+from odoo.tests import common
+from odoo.tools import mute_logger
 
 
 class TestCmisBackend(common.SavepointCase):
@@ -22,6 +22,7 @@ class TestCmisBackend(common.SavepointCase):
         self.backend_instance = self.cmis_backend.create(
             self.vals)
 
+    @mute_logger("odoo.sql_db")
     def test_unique_name(self):
         with self.assertRaises(IntegrityError):
             self.cmis_backend.create(self.vals)
