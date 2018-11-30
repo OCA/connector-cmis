@@ -3,7 +3,7 @@
 
 {
     'name': 'CMIS',
-    'version': '11.0.1.0.0',
+    'version': '12.0.1.0.0',
     'development_status': 'Mature',
     'category': 'Connector',
     'summary': 'Connect Odoo with a CMIS server',
