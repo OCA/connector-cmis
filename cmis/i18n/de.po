@@ -30,13 +30,13 @@ msgstr ""
 
 #. module: cmis
 #: model:ir.model,name:cmis.model_cmis_backend
-#: model:ir.ui.view,arch_db:cmis.cmis_backend_form_view
-#: model:ir.ui.view,arch_db:cmis.cmis_backend_search_view
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_search_view
 msgid "CMIS Backend"
 msgstr "CMIS Backend"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:42 sql_constraint:cmis.backend:0
+#: code:addons/cmis/models/cmis_backend.py:41 sql_constraint:cmis.backend:0
 #, python-format
 msgid "CMIS Backend name must be unique!"
 msgstr "CMIS Backend Name muss eindeutig sein!"
@@ -47,89 +47,89 @@ msgid "Cmis Backend"
 msgstr "Cmis Backend"
 
 #. module: cmis
-#: model:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
 msgid "Cmis Configuration"
 msgstr "Cmis Konfiguration"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_create_uid
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__create_uid
 msgid "Created by"
 msgstr "Erzeugt von"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_create_date
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__create_date
 msgid "Created on"
 msgstr "Erzeugt am"
 
 #. module: cmis
-#: model:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
 msgid "Directory Configuration"
 msgstr "Ordner Konfiguration"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_display_name
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__display_name
 msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:95
+#: code:addons/cmis/models/cmis_backend.py:94
 #, python-format
 msgid "Error path for : %s"
 msgstr "Fehler Pfad von : %s"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_id
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__id
 msgid "ID"
 msgstr "ID"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_initial_directory_write
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__initial_directory_write
 msgid "Initial directory for writing"
 msgstr "Erster Ordner zum Schreiben"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend___last_update
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend____last_update
 msgid "Last Modified on"
 msgstr "Zuletzt geändert am"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_write_uid
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__write_uid
 msgid "Last Updated by"
 msgstr "Zuletzt aktualisiert von"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_write_date
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__write_date
 msgid "Last Updated on"
 msgstr "Zuletzt aktualisiert am"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_location
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__location
 msgid "Location"
 msgstr "Ort"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_name
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__name
 msgid "Name"
 msgstr "Name"
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_password
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__password
 msgid "Password"
 msgstr "Passwort"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:92
+#: code:addons/cmis/models/cmis_backend.py:91
 #, python-format
 msgid "Path is correct for : %s"
 msgstr "Pfad ist richtig für : %s"
 
 #. module: cmis
-#: model:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
 msgid "Test Directory"
 msgstr "Test Ordner"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:85
+#: code:addons/cmis/models/cmis_backend.py:84
 #, python-format
 msgid ""
 "The test file already exists in the DMS. Please remove it and try again."
@@ -137,12 +137,12 @@ msgstr ""
 "Die Testdatei existert schon im DMS. Bitte entfernen und nochmal probieren."
 
 #. module: cmis
-#: model:ir.model.fields,field_description:cmis.field_cmis_backend_username
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__username
 msgid "Username"
 msgstr "Benutzername"
 
 #. module: cmis
-#: model:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
 msgid "e.g. http://localhost:8081/alfresco/s/cmis"
 msgstr "z.B. http://localhost:8081/alfresco/s/cmis"
 
