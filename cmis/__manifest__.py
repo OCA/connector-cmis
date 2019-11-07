@@ -3,7 +3,7 @@
 
 {
     "name": "CMIS",
-    "version": "13.0.1.0.0",
+    "version": "13.0.1.0.1",
     "development_status": "Mature",
     "category": "Connector",
     "summary": "Connect Odoo with a CMIS server",
@@ -16,5 +16,5 @@
     "external_dependencies": {"python": ["cmislib"]},
     "data": ["security/cmis_backend.xml", "views/cmis_backend.xml"],
     "demo": ["demo/cmis_backend_demo.xml"],
-    "installable": False,
+    "installable": True,
 }

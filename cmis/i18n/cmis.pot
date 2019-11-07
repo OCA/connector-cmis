@@ -1,12 +1,12 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* cmis
+# 	* cmis
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0\n"
+"Project-Id-Version: Odoo Server 13.0\n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: <>\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,8 +31,8 @@ msgid "CMIS Backend"
 msgstr ""
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:41
-#: sql_constraint:cmis.backend:0
+#: code:addons/cmis/models/cmis_backend.py:0
+#: model:ir.model.constraint,message:cmis.constraint_cmis_backend_name_uniq
 #, python-format
 msgid "CMIS Backend name must be unique!"
 msgstr ""
@@ -68,7 +68,7 @@ msgid "Display Name"
 msgstr ""
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:94
+#: code:addons/cmis/models/cmis_backend.py:0
 #, python-format
 msgid "Error path for : %s"
 msgstr ""
@@ -114,7 +114,7 @@ msgid "Password"
 msgstr ""
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:91
+#: code:addons/cmis/models/cmis_backend.py:0
 #, python-format
 msgid "Path is correct for : %s"
 msgstr ""
@@ -125,9 +125,10 @@ msgid "Test Directory"
 msgstr ""
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:84
+#: code:addons/cmis/models/cmis_backend.py:0
 #, python-format
-msgid "The test file already exists in the DMS. Please remove it and try again."
+msgid ""
+"The test file already exists in the DMS. Please remove it and try again."
 msgstr ""
 
 #. module: cmis
@@ -139,4 +140,3 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
 msgid "e.g. http://localhost:8081/alfresco/s/cmis"
 msgstr ""
-
