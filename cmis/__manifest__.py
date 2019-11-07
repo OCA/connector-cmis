@@ -23,5 +23,5 @@
     'demo': [
         'demo/cmis_backend_demo.xml',
     ],
-    'installable': True,
+    'installable': False,
 }
