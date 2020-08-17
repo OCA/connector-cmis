@@ -7,5 +7,6 @@ from odoo.exceptions import UserError
 
 class CMISError(UserError):
     """CMIS Error!"""
+
     def __init__(self, value):
         super(CMISError, self).__init__(value)

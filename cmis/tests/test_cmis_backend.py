@@ -8,19 +8,17 @@ from openerp.tests import common
 
 
 class TestCmisBackend(common.SavepointCase):
-
     def setUp(self):
         super(TestCmisBackend, self).setUp()
         self.vals = {
-            'name': "Test cmis",
-            'location': "http://localhost:8081/alfresco/s/cmis",
-            'username': 'admin',
-            'password': 'admin',
-            'initial_directory_write': '/',
+            "name": "Test cmis",
+            "location": "http://localhost:8081/alfresco/s/cmis",
+            "username": "admin",
+            "password": "admin",
+            "initial_directory_write": "/",
         }
-        self.cmis_backend = self.env['cmis.backend']
-        self.backend_instance = self.cmis_backend.create(
-            self.vals)
+        self.cmis_backend = self.env["cmis.backend"]
+        self.backend_instance = self.cmis_backend.create(self.vals)
 
     def test_unique_name(self):
         with self.assertRaises(IntegrityError):
