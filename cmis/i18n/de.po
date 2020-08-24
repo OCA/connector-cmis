@@ -36,7 +36,7 @@ msgid "CMIS Backend"
 msgstr "CMIS Backend"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:42 sql_constraint:cmis.backend:0
+#: code:addons/cmis/models/cmis_backend.py:38 sql_constraint:cmis.backend:0
 #, python-format
 msgid "CMIS Backend name must be unique!"
 msgstr "CMIS Backend Name muss eindeutig sein!"
@@ -72,7 +72,7 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:95
+#: code:addons/cmis/models/cmis_backend.py:90
 #, python-format
 msgid "Error path for : %s"
 msgstr "Fehler Pfad von : %s"
@@ -118,7 +118,7 @@ msgid "Password"
 msgstr "Passwort"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:92
+#: code:addons/cmis/models/cmis_backend.py:88
 #, python-format
 msgid "Path is correct for : %s"
 msgstr "Pfad ist richtig für : %s"
@@ -129,7 +129,7 @@ msgid "Test Directory"
 msgstr "Test Ordner"
 
 #. module: cmis
-#: code:addons/cmis/models/cmis_backend.py:85
+#: code:addons/cmis/models/cmis_backend.py:79
 #, python-format
 msgid ""
 "The test file already exists in the DMS. Please remove it and try again."
