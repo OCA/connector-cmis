@@ -47,7 +47,7 @@
         <field name="model">cmis.backend</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="name" widget="handle"/>
+                <field name="name"/>
                 <field name="location"/>
             </tree>
         </field>
