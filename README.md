@@ -12,7 +12,7 @@ Available addons
 ----------------
 addon | version | summary
 --- | --- | ---
-[cmis](cmis/) | 10.0.1.1.0 | Connect Odoo with a CMIS server
+[cmis](cmis/) | 10.0.1.2.0 | Connect Odoo with a CMIS server
 
 
 Unported addons
