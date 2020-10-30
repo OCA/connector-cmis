@@ -7,6 +7,11 @@ Connector-cmis
 ==============
 [//]: # (addons)
 
+Unported addons
+---------------
+addon | version | summary
+--- | --- | ---
+[cmis](cmis/) | 12.0.1.0.0 (unported) | Connect Odoo with a CMIS server
 
 [//]: # (end addons)
 
