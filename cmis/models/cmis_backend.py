@@ -38,18 +38,6 @@ class CmisBackend(models.Model):
         ("name_uniq", "unique(name)", _("CMIS Backend name must be unique!"))
     ]
 
-    def get_requests_timeout(self):
-        """
-        Fetch and return the requests timeout (ir.config_parameter in seconds)
-        Avoid stacktrace by giving a default of 10 seconds in case of exception
-        """
-        try:
-            timeout = float(self.env.ref("cmis.requests_timeout").value)
-        except Exception as e:
-            _logger.error(e)
-            timeout = 10.0
-        return timeout
-
     def get_cmis_client(self):
         """
         Get an initialized CmisClient using the CMISBrowserBinding

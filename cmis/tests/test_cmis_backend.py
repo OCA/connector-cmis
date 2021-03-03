@@ -28,30 +28,6 @@ class TestCmisBackend(common.SavepointCase):
 
     def test_requests_timeout(self):
         # test default ir_config_parameter
-        timeout = self.cmis_backend.get_requests_timeout()
-        self.assertEqual(timeout, 10)
-
-        # test ir_config_parameter different from fallback in method
-        self.env["ir.config_parameter"].sudo().set_param(
-            "cmis.requests_timeout", 13)
-        timeout = self.cmis_backend.get_requests_timeout()
-        self.assertEqual(timeout, 13)
-
-        # test default from method if faulty value in ir_config_parameter
-        self.env["ir.config_parameter"].sudo().set_param(
-            "cmis.requests_timeout", "faulty")
-        timeout = self.env["ir.config_parameter"].sudo().get_param(
-            "cmis.requests_timeout")
-        self.assertEqual(timeout, "faulty")
-        timeout = self.cmis_backend.get_requests_timeout()
-        self.assertEqual(timeout, 10)
-
-        # test default from method if missing ir_config_parameter
-        param = self.env["ir.config_parameter"].sudo().search([
-            ('key', '=', "cmis.requests_timeout")])
-        param.unlink()
-        timeout = self.env["ir.config_parameter"].sudo().get_param(
-            "cmis.requests_timeout", "missing")
-        self.assertEqual(timeout, "missing")
-        timeout = self.cmis_backend.get_requests_timeout()
-        self.assertEqual(timeout, 10)
+        timeout = self.env['ir.config_parameter'].get_param(
+                    "cmis.requests_timeout", "FAULTY")
+        self.assertEqual(timeout, '10')
