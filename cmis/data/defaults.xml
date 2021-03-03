@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record model="ir.config_parameter" id="requests_timeout">
+        <field name="key">cmis.requests_timeout</field>
+        <field name="value">10</field>
+    </record>
+
+</odoo>
