@@ -14,9 +14,9 @@ _logger = logging.getLogger(__name__)
 
 try:
     import cmislib.exceptions
-    from cmislib.model import CmisClient
     from cmislib.browser.binding import BrowserBinding
     from cmislib.exceptions import ObjectNotFoundException
+    from cmislib.model import CmisClient
 except (ImportError, IOError) as err:
     _logger.debug(err)
 
@@ -48,7 +48,7 @@ class CmisBackend(models.Model):
         )
 
     def get_cmis_repository(self):
-        """ Return the default repository in the CMIS container """
+        """Return the default repository in the CMIS container"""
         self.ensure_one()
         client = self.get_cmis_client()
         return client.defaultRepository

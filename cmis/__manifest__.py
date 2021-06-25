@@ -3,7 +3,7 @@
 
 {
     "name": "CMIS",
-    "version": "13.0.1.0.1",
+    "version": "14.0.1.0.0",
     "development_status": "Mature",
     "category": "Connector",
     "summary": "Connect Odoo with a CMIS server",
@@ -11,9 +11,9 @@
     "ACSONE SA/NV, "
     "Odoo Community Association (OCA)",
     "maintainers": ["lmignon"],
-    "website": "https://odoo-community.org/",
+    "website": "https://github.com/OCA/connector-cmis",
     "license": "AGPL-3",
-    "external_dependencies": {"python": ["cmislib"]},
+    "external_dependencies": {"python": ["cmislib3"]},
     "data": ["security/cmis_backend.xml", "views/cmis_backend.xml"],
     "demo": ["demo/cmis_backend_demo.xml"],
     "installable": True,
