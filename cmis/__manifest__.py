@@ -13,7 +13,7 @@
     "maintainers": ["lmignon"],
     "website": "https://github.com/OCA/connector-cmis",
     "license": "AGPL-3",
-    "external_dependencies": {"python": ["cmislib3"]},
+    "external_dependencies": {"python": ["cmislib"]},
     "data": ["security/cmis_backend.xml", "views/cmis_backend.xml"],
     "demo": ["demo/cmis_backend_demo.xml"],
     "installable": True,
