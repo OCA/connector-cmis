@@ -9,9 +9,9 @@ Connector-cmis
 
 Available addons
 ----------------
-addon | version | summary
---- | --- | ---
-[cmis](cmis/) | 13.0.1.0.1 | Connect Odoo with a CMIS server
+addon | version | maintainers | summary
+--- | --- | --- | ---
+[cmis](cmis/) | 13.0.1.0.1 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Connect Odoo with a CMIS server
 
 [//]: # (end addons)
 
