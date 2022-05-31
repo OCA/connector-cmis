@@ -1,0 +1,154 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * cmis
+#
+# Translators:
+# Niki Waibel <niki.waibel@gmail.com>, 2017
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-08 01:35+0000\n"
+"PO-Revision-Date: 2017-02-08 01:35+0000\n"
+"Last-Translator: Niki Waibel <niki.waibel@gmail.com>, 2017\n"
+"Language-Team: German (https://www.transifex.com/oca/teams/23907/de/)\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: cmis
+#: model:ir.ui.menu,name:cmis.cmis_backend_menu
+msgid "Backends"
+msgstr "Backends"
+
+#. module: cmis
+#: model:ir.ui.menu,name:cmis.cmis_root_menu
+msgid "CMIS"
+msgstr ""
+
+#. module: cmis
+#: model:ir.model,name:cmis.model_cmis_backend
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_search_view
+msgid "CMIS Backend"
+msgstr "CMIS Backend"
+
+#. module: cmis
+#: code:addons/cmis/models/cmis_backend.py:0
+#: model:ir.model.constraint,message:cmis.constraint_cmis_backend_name_uniq
+#, python-format
+msgid "CMIS Backend name must be unique!"
+msgstr "CMIS Backend Name muss eindeutig sein!"
+
+#. module: cmis
+#: model:ir.actions.act_window,name:cmis.cmis_backend_act_window
+msgid "Cmis Backend"
+msgstr "Cmis Backend"
+
+#. module: cmis
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+msgid "Cmis Configuration"
+msgstr "Cmis Konfiguration"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__create_uid
+msgid "Created by"
+msgstr "Erzeugt von"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__create_date
+msgid "Created on"
+msgstr "Erzeugt am"
+
+#. module: cmis
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+msgid "Directory Configuration"
+msgstr "Ordner Konfiguration"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: cmis
+#: code:addons/cmis/models/cmis_backend.py:0
+#, python-format
+msgid "Error path for : %s"
+msgstr "Fehler Pfad von : %s"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__id
+msgid "ID"
+msgstr "ID"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__initial_directory_write
+msgid "Initial directory for writing"
+msgstr "Erster Ordner zum Schreiben"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert von"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__location
+msgid "Location"
+msgstr "Ort"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__name
+msgid "Name"
+msgstr "Name"
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__password
+msgid "Password"
+msgstr "Passwort"
+
+#. module: cmis
+#: code:addons/cmis/models/cmis_backend.py:0
+#, python-format
+msgid "Path is correct for : %s"
+msgstr "Pfad ist richtig für : %s"
+
+#. module: cmis
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+msgid "Test Directory"
+msgstr "Test Ordner"
+
+#. module: cmis
+#: code:addons/cmis/models/cmis_backend.py:0
+#, python-format
+msgid ""
+"The test file already exists in the DMS. Please remove it and try again."
+msgstr ""
+"Die Testdatei existert schon im DMS. Bitte entfernen und nochmal probieren."
+
+#. module: cmis
+#: model:ir.model.fields,field_description:cmis.field_cmis_backend__username
+msgid "Username"
+msgstr "Benutzername"
+
+#. module: cmis
+#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
+msgid "e.g. http://localhost:8081/alfresco/s/cmis"
+msgstr "z.B. http://localhost:8081/alfresco/s/cmis"
+
+#~ msgid "Claim Categories"
+#~ msgstr "Fordere Kategorien"
+
+#~ msgid "Cmis"
+#~ msgstr "Cmis"
