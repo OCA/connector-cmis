@@ -71,16 +71,16 @@ class CmisBackend(models.Model):
                         contentString="hello, world",
                         contentType="text/plain",
                     )
-                except cmislib.exceptions.UpdateConflictException:
+                except cmislib.exceptions.UpdateConflictException as update_conflict_error:
                     raise CMISError(
                         _(
                             "The test file already exists in the DMS. "
                             "Please remove it and try again."
                         )
-                    )
-                except cmislib.exceptions.RuntimeException:
+                    ) from update_conflict_error
+                except cmislib.exceptions.RuntimeException as runtime_exc:
                     _logger.exception("Please check your access right.")
-                    raise CMISError("Please check your access right.")
+                    raise CMISError("Please check your access right.") from runtime_exc
             if path_write_objectid is not False:
                 raise UserError(_("Path is correct for : %s") % path_write_objectid)
             else:

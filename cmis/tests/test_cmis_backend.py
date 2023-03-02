@@ -8,9 +8,9 @@ from odoo.tests import common
 from odoo.tools import mute_logger
 
 
-class TestCmisBackend(common.SavepointCase):
+class TestCmisBackend(common.TransactionCase):
     def setUp(self):
-        super(TestCmisBackend, self).setUp()
+        super().setUp()
         self.vals = {
             "name": "Test cmis",
             "location": "http://localhost:8081/alfresco/s/cmis",
