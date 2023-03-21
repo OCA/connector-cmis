@@ -36,6 +36,7 @@ msgid "CMIS Backend"
 msgstr "CMIS Backend"
 
 #. module: cmis
+#. odoo-python
 #: code:addons/cmis/models/cmis_backend.py:0
 #: model:ir.model.constraint,message:cmis.constraint_cmis_backend_name_uniq
 #, python-format
@@ -73,6 +74,7 @@ msgid "Display Name"
 msgstr "Anzeigename"
 
 #. module: cmis
+#. odoo-python
 #: code:addons/cmis/models/cmis_backend.py:0
 #, python-format
 msgid "Error path for : %s"
@@ -119,6 +121,7 @@ msgid "Password"
 msgstr "Passwort"
 
 #. module: cmis
+#. odoo-python
 #: code:addons/cmis/models/cmis_backend.py:0
 #, python-format
 msgid "Path is correct for : %s"
@@ -130,6 +133,7 @@ msgid "Test Directory"
 msgstr "Test Ordner"
 
 #. module: cmis
+#. odoo-python
 #: code:addons/cmis/models/cmis_backend.py:0
 #, python-format
 msgid ""
