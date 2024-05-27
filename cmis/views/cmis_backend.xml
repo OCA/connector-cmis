@@ -6,32 +6,37 @@
         <field name="name">cmis.backend.form (in cmis)</field>
         <field name="model">cmis.backend</field>
         <field name="arch" type="xml">
-            <form string="CMIS Backend">
+            <form>
                 <sheet>
-                    <label for="name" class="oe_edit_only" />
-                    <h1>
-                        <field name="name" class="oe_inline" />
-                    </h1>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
                     <group name="cmis" string="Cmis Configuration">
-                        <group colspan="4" col="4">
+                        <group name="cmis_left">
+                            <field name="username" />
                             <field
                                 name="location"
                                 placeholder="e.g. http://localhost:8081/alfresco/s/cmis"
-                                colspan="4"
                             />
-                            <field name="username" colspan="2" />
-                            <field name="password" colspan="2" password="True" />
+                        </group>
+                        <group name="cmis_right">
+                            <field name="password" password="True" />
                         </group>
                     </group>
                     <group name="directory_conf" string="Directory Configuration">
-                        <group colspan="4" col="4">
-                            <newline />
+                        <group name="directory_conf_left">
                             <field name="initial_directory_write" />
+                        </group>
+                        <group name="directory_conf_right">
                             <button
                                 name="check_directory_of_write"
                                 type="object"
                                 class="oe_highlight"
                                 string="Test Directory"
+                                colspan="2"
                             />
                         </group>
                     </group>
