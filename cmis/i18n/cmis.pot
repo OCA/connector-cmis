@@ -25,7 +25,6 @@ msgstr ""
 
 #. module: cmis
 #: model:ir.model,name:cmis.model_cmis_backend
-#: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_form_view
 #: model_terms:ir.ui.view,arch_db:cmis.cmis_backend_search_view
 msgid "CMIS Backend"
 msgstr ""
