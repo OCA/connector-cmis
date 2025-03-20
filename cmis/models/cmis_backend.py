@@ -17,7 +17,7 @@ try:
     from cmislib.browser.binding import BrowserBinding
     from cmislib.exceptions import ObjectNotFoundException
     from cmislib.model import CmisClient
-except (ImportError, IOError) as err:
+except (OSError, ImportError) as err:
     _logger.debug(err)
 
 
@@ -71,7 +71,9 @@ class CmisBackend(models.Model):
                         contentString="hello, world",
                         contentType="text/plain",
                     )
-                except cmislib.exceptions.UpdateConflictException as update_conflict_error:
+                except (
+                    cmislib.exceptions.UpdateConflictException
+                ) as update_conflict_error:
                     raise CMISError(
                         _(
                             "The test file already exists in the DMS. "

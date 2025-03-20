@@ -17,20 +17,20 @@ CMIS
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge3| image:: https://img.shields.io/badge/github-OCA%2Fconnector--cmis-lightgray.png?logo=github
-    :target: https://github.com/OCA/connector-cmis/tree/16.0/cmis
+    :target: https://github.com/OCA/connector-cmis/tree/18.0/cmis
     :alt: OCA/connector-cmis
 .. |badge4| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/connector-cmis-16-0/connector-cmis-16-0-cmis
+    :target: https://translation.odoo-community.org/projects/connector-cmis-18-0/connector-cmis-18-0-cmis
     :alt: Translate me on Weblate
 .. |badge5| image:: https://img.shields.io/badge/runboat-Try%20me-875A7B.png
-    :target: https://runboat.odoo-community.org/builds?repo=OCA/connector-cmis&target_branch=16.0
+    :target: https://runboat.odoo-community.org/builds?repo=OCA/connector-cmis&target_branch=18.0
     :alt: Try me on Runboat
 
 |badge1| |badge2| |badge3| |badge4| |badge5|
 
-This module is the base for Odoo modules implementing different integration
-scenario with a CMIS server.
-It allows you to configure a CMIS backend in Odoo.
+This module is the base for Odoo modules implementing different
+integration scenario with a CMIS server. It allows you to configure a
+CMIS backend in Odoo.
 
 **Table of contents**
 
@@ -40,20 +40,19 @@ It allows you to configure a CMIS backend in Odoo.
 Installation
 ============
 
-To be compliant with python 3.x, the connector use the next version of the
-python cmislib library not yet released at this stage. The lib can be
-installed with:
+To be compliant with python 3.x, the connector use the next version of
+the python cmislib library not yet released at this stage. The lib can
+be installed with:
 
 ::
 
-  pip install git+https://github.com/apache/chemistry-cmislib.git@py3_compat#egg=cmislib
+   pip install git+https://github.com/apache/chemistry-cmislib.git@py3_compat#egg=cmislib
 
 Changelog
 =========
 
-
 11.0.1.0.0
-~~~~~~~~~~
+----------
 
 First official version for Odoo 11.0.
 
@@ -63,7 +62,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/connector-cmis/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/connector-cmis/issues/new?body=module:%20cmis%0Aversion:%2016.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/connector-cmis/issues/new?body=module:%20cmis%0Aversion:%2018.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -71,20 +70,20 @@ Credits
 =======
 
 Authors
-~~~~~~~
+-------
 
 * Savoir-faire Linux
 * ACSONE SA/NV
 
 Contributors
-~~~~~~~~~~~~
+------------
 
-* Laurent Mignon <laurent.mignon@acsone.eu>
-* Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
-* El Hadji Dem <elhadji.dem@savoirfairelinux.com>
+- Laurent Mignon <laurent.mignon@acsone.eu>
+- Maxime Chambreuil <maxime.chambreuil@savoirfairelinux.com>
+- El Hadji Dem <elhadji.dem@savoirfairelinux.com>
 
 Maintainers
-~~~~~~~~~~~
+-----------
 
 This module is maintained by the OCA.
 
@@ -104,6 +103,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-lmignon| 
 
-This module is part of the `OCA/connector-cmis <https://github.com/OCA/connector-cmis/tree/16.0/cmis>`_ project on GitHub.
+This module is part of the `OCA/connector-cmis <https://github.com/OCA/connector-cmis/tree/18.0/cmis>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.
