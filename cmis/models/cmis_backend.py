@@ -35,7 +35,7 @@ class CmisBackend(models.Model):
     )
 
     _sql_constraints = [
-        ("name_uniq", "unique(name)", _("CMIS Backend name must be unique!"))
+        ("name_uniq", "unique(name)", "CMIS Backend name must be unique!")
     ]
 
     def get_cmis_client(self):
@@ -97,7 +97,7 @@ class CmisBackend(models.Model):
             path = repo.getObject(cmis_parent_objectid).getPaths()[0] + "/" + path
         traversed = []
         if not path.startswith("/"):
-            path = "/%s" % path
+            path = f"/{path}"
         try:
             return repo.getObjectByPath(path)
         except ObjectNotFoundException:
@@ -106,7 +106,7 @@ class CmisBackend(models.Model):
         # The path doesn't exist and must be created
         for part in path.split("/"):
             try:
-                part = "%s" % part
+                part = f"{part}"
                 traversed.append(part)
                 new_root = repo.getObjectByPath("/".join(traversed))
             except ObjectNotFoundException:

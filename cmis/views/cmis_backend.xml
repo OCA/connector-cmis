@@ -59,17 +59,17 @@
         <field name="name">cmis.backend.tree (in cmis)</field>
         <field name="model">cmis.backend</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name" widget="handle" />
                 <field name="location" />
-            </tree>
+            </list>
         </field>
     </record>
 
     <record model="ir.actions.act_window" id="cmis_backend_act_window">
         <field name="name">Cmis Backend</field>
         <field name="res_model">cmis.backend</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="domain">[]</field>
         <field name="context">{}</field>
     </record>
