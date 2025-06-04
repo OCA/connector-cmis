@@ -11,7 +11,7 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[cmis](cmis/) | 13.0.1.0.1 | [![lmignon](https://github.com/lmignon.png?size=30px)](https://github.com/lmignon) | Connect Odoo with a CMIS server
+[cmis](cmis/) | 13.0.1.0.1 | <a href='https://github.com/lmignon'><img src='https://github.com/lmignon.png' width='32' height='32' style='border-radius:50%;' alt='lmignon'/></a> | Connect Odoo with a CMIS server
 
 [//]: # (end addons)
 
