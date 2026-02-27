@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
+from urllib.parse import urlparse, urlunparse
 
 from odoo import fields, models
 from odoo.exceptions import UserError
@@ -28,6 +29,12 @@ class CmisBackend(models.Model):
 
     name = fields.Char(required=True)
     location = fields.Char(required=True)
+    backend_host_override = fields.Char(
+        help=(
+            "Override the host part of the location URL "
+            "when calling the CMIS server from the Odoo backend."
+        )
+    )
     username = fields.Char(required=True)
     password = fields.Char(required=True)
     initial_directory_write = fields.Char(
@@ -38,20 +45,41 @@ class CmisBackend(models.Model):
         ("name_uniq", "unique(name)", _("CMIS Backend name must be unique!"))
     ]
 
+    def _backend_location_override(self, url: str) -> str:
+        if not self.backend_host_override:
+            return url
+        parsed_url = urlparse(url)
+        return urlunparse(
+            (
+                parsed_url.scheme,
+                self.backend_host_override,
+                parsed_url.path,
+                parsed_url.params,
+                parsed_url.query,
+                parsed_url.fragment,
+            )
+        )
+
     def get_cmis_client(self):
         """
         Get an initialized CmisClient using the CMISBrowserBinding
         """
         self.ensure_one()
         return CmisClient(
-            self.location, self.username, self.password, binding=BrowserBinding()
+            self._backend_location_override(self.location),
+            self.username,
+            self.password,
+            binding=BrowserBinding(),
         )
 
     def get_cmis_repository(self):
         """Return the default repository in the CMIS container"""
         self.ensure_one()
         client = self.get_cmis_client()
-        return client.defaultRepository
+        repo = client.defaultRepository
+        repo.data["repositoryUrl"] = self._backend_location_override(repo.data["repositoryUrl"])
+        repo.data["rootFolderUrl"] = self._backend_location_override(repo.data["rootFolderUrl"])
+        return repo
 
     def check_directory_of_write(self):
         """Check access right to write from the path"""
@@ -71,7 +99,9 @@ class CmisBackend(models.Model):
                         contentString="hello, world",
                         contentType="text/plain",
                     )
-                except cmislib.exceptions.UpdateConflictException as update_conflict_error:
+                except (
+                    cmislib.exceptions.UpdateConflictException
+                ) as update_conflict_error:
                     raise CMISError(
                         _(
                             "The test file already exists in the DMS. "
