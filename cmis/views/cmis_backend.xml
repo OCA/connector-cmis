@@ -26,6 +26,12 @@
                             <field name="password" password="True" />
                         </group>
                     </group>
+                    <group>
+                            <field
+                                name="backend_host_override"
+                                placeholder="e.g. otherhost:8082"
+                            />
+                    </group>
                     <group name="directory_conf" string="Directory Configuration">
                         <group name="directory_conf_left">
                             <field name="initial_directory_write" />
