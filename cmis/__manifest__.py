@@ -13,7 +13,7 @@
     "license": "AGPL-3",
     "depends": ["base"],
     "external_dependencies": {"python": ["cmislib"]},
-    "data": ["security/cmis_backend.xml", "views/cmis_backend.xml"],
+    "data": ["security/ir.model.access.csv", "views/cmis_backend.xml"],
     "demo": ["demo/cmis_backend_demo.xml"],
     "installable": True,
 }

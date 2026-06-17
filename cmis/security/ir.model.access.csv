@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+cmis_backend_access_user,cmis.backend access user,model_cmis_backend,base.group_user,1,0,0,0
+cmis_backend_access_manager,cmis.backend access manager,model_cmis_backend,base.group_system,1,1,1,1
