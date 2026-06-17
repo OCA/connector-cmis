@@ -53,10 +53,13 @@ class TestCmisBackend(common.TransactionCase):
         user = self._create_internal_user()
         backend = self.backend_instance.with_user(user)
         backend.invalidate_recordset()
-        with mock.patch(
-            "odoo.addons.cmis.models.cmis_backend.CmisClient", create=True
-        ) as client, mock.patch(
-            "odoo.addons.cmis.models.cmis_backend.BrowserBinding", create=True
+        with (
+            mock.patch(
+                "odoo.addons.cmis.models.cmis_backend.CmisClient", create=True
+            ) as client,
+            mock.patch(
+                "odoo.addons.cmis.models.cmis_backend.BrowserBinding", create=True
+            ),
         ):
             backend._get_cmis_client()
         args = client.call_args[0]
