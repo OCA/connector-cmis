@@ -34,7 +34,7 @@ class TestCmisBackend(common.TransactionCase):
             {
                 "name": "CMIS internal user",
                 "login": "cmis_internal_user",
-                "groups_id": [(6, 0, [self.env.ref("base.group_user").id])],
+                "group_ids": [(6, 0, [self.env.ref("base.group_user").id])],
             }
         )
 

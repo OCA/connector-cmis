@@ -3,13 +3,11 @@
 
 {
     "name": "CMIS",
-    "version": "18.0.1.0.1",
+    "version": "19.0.1.0.0",
     "development_status": "Mature",
     "category": "Connector",
     "summary": "Connect Odoo with a CMIS server",
-    "author": "Savoir-faire Linux, "
-    "ACSONE SA/NV, "
-    "Odoo Community Association (OCA)",
+    "author": "Savoir-faire Linux, ACSONE SA/NV, Odoo Community Association (OCA)",
     "maintainers": ["lmignon"],
     "website": "https://github.com/OCA/connector-cmis",
     "license": "AGPL-3",

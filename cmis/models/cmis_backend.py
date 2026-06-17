@@ -6,7 +6,6 @@ import logging
 
 from odoo import fields, models
 from odoo.exceptions import UserError
-from odoo.tools.translate import _
 
 from ..exceptions import CMISError
 
@@ -34,11 +33,12 @@ class CmisBackend(models.Model):
         "Initial directory for writing", required=True, default="/"
     )
 
-    _sql_constraints = [
-        ("name_uniq", "unique(name)", "CMIS Backend name must be unique!")
-    ]
+    _name_uniq = models.Constraint(
+        "unique(name)",
+        "CMIS Backend name must be unique!",
+    )
 
-    def get_cmis_client(self):
+    def _get_cmis_client(self):
         """
         Get an initialized CmisClient using the CMISBrowserBinding
         """
@@ -53,7 +53,7 @@ class CmisBackend(models.Model):
     def get_cmis_repository(self):
         """Return the default repository in the CMIS container"""
         self.ensure_one()
-        client = self.get_cmis_client()
+        client = self._get_cmis_client()
         return client.defaultRepository
 
     def check_directory_of_write(self):
@@ -78,7 +78,7 @@ class CmisBackend(models.Model):
                     cmislib.exceptions.UpdateConflictException
                 ) as update_conflict_error:
                     raise CMISError(
-                        _(
+                        self.env._(
                             "The test file already exists in the DMS. "
                             "Please remove it and try again."
                         )
@@ -87,9 +87,11 @@ class CmisBackend(models.Model):
                     _logger.exception("Please check your access right.")
                     raise CMISError("Please check your access right.") from runtime_exc
             if path_write_objectid is not False:
-                raise UserError(_("Path is correct for : %s") % path_write_objectid)
+                msg = self.env._("Path is correct for : %s")
+                raise UserError(msg % path_write_objectid)
             else:
-                raise CMISError(_("Error path for : %s") % path_write_objectid)
+                msg = self.env._("Error path for : %s")
+                raise CMISError(msg % path_write_objectid)
 
     def get_folder_by_path(
         self, path, create_if_not_found=True, cmis_parent_objectid=None
