@@ -4,6 +4,7 @@
 
 from psycopg2._psycopg import IntegrityError
 
+from odoo.exceptions import AccessError
 from odoo.tests import common
 from odoo.tools import mute_logger
 
@@ -25,3 +26,19 @@ class TestCmisBackend(common.SavepointCase):
     def test_unique_name(self):
         with self.assertRaises(IntegrityError):
             self.cmis_backend.create(self.vals)
+
+    def test_internal_user_no_access(self):
+        user = self.env["res.users"].create(
+            {
+                "name": "CMIS internal user",
+                "login": "cmis_internal_user",
+                "groups_id": [(6, 0, [self.env.ref("base.group_user").id])],
+            }
+        )
+        backend = self.backend_instance.with_user(user)
+        with self.assertRaises(AccessError):
+            self.cmis_backend.with_user(user).search_read([], ["password"])
+        with self.assertRaises(AccessError):
+            backend.read(["username", "password"])
+        with self.assertRaises(AccessError):
+            backend.get_folder_by_path("/")
