@@ -29,9 +29,9 @@ class CmisBackend(models.Model):
     location = fields.Char(
         required=True)
     username = fields.Char(
-        required=True)
+        required=True, groups="base.group_system")
     password = fields.Char(
-        required=True)
+        required=True, groups="base.group_system")
     initial_directory_write = fields.Char(
         'Initial directory for writing', required=True, default='/')
 
@@ -49,8 +49,8 @@ class CmisBackend(models.Model):
         self.ensure_one()
         return CmisClient(
             self.location,
-            self.username,
-            self.password,
+            self.sudo().username,
+            self.sudo().password,
             binding=BrowserBinding())
 
     @api.multi
