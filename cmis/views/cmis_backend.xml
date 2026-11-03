@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2016 ACSONE SA/NV License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record model="ir.ui.view" id="cmis_backend_form_view">
+        <field name="name">cmis.backend.form (in cmis)</field>
+        <field name="model">cmis.backend</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" />
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group name="cmis" string="Cmis Configuration">
+                        <group name="cmis_left">
+                            <field name="username" />
+                            <field
+                                name="location"
+                                placeholder="e.g. http://localhost:8081/alfresco/s/cmis"
+                            />
+                        </group>
+                        <group name="cmis_right">
+                            <field name="password" password="True" />
+                        </group>
+                    </group>
+                    <group name="directory_conf" string="Directory Configuration">
+                        <group name="directory_conf_left">
+                            <field name="initial_directory_write" />
+                        </group>
+                        <group name="directory_conf_right">
+                            <button
+                                name="check_directory_of_write"
+                                type="object"
+                                class="oe_highlight"
+                                string="Test Directory"
+                                colspan="2"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="cmis_backend_search_view">
+        <field name="name">cmis.backend.search (in cmis)</field>
+        <field name="model">cmis.backend</field>
+        <field name="arch" type="xml">
+            <search string="CMIS Backend">
+                <field name="name" />
+                <field name="location" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="cmis_backend_tree_view">
+        <field name="name">cmis.backend.tree (in cmis)</field>
+        <field name="model">cmis.backend</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" widget="handle" />
+                <field name="location" />
+            </list>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="cmis_backend_act_window">
+        <field name="name">Cmis Backend</field>
+        <field name="res_model">cmis.backend</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem id="cmis_root_menu" name="CMIS" parent="base.menu_administration" />
+
+    <menuitem
+        id="cmis_backend_menu"
+        name="Backends"
+        parent="cmis_root_menu"
+        action="cmis_backend_act_window"
+        sequence="16"
+    />
+</odoo>

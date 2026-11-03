@@ -1,0 +1,11 @@
+# © 2016 ACSONE SA/NV (<http://acsone.eu>).
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from odoo.exceptions import UserError
+
+
+class CMISError(UserError):
+    """CMIS Error!"""
+
+    def __init__(self, value):
+        super().__init__(value)
